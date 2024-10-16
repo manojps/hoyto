@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Storage Systems on Hoyto ...</title>
+    <link>http://localhost:1313/docs/systems/storage/</link>
+    <description>Recent content in Storage Systems on Hoyto ...</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/docs/systems/storage/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Compute Express Link (CXL)</title>
+      <link>http://localhost:1313/docs/systems/storage/cxl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/systems/storage/cxl/</guid>
+      <description>&lt;h1 id=&#34;compute-express-link-cxl&#34;&gt;&#xA;  Compute Express Link (CXL)&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#compute-express-link-cxl&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;cxl-specs-protocols-device-types&#34;&gt;&#xA;  CXL Specs, Protocols, Device Types&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#cxl-specs-protocols-device-types&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;CXL specifications have three major versions so far - CXL 1.0, CXL 2.0 and CXL 3.0.&#xA;These CXL specifications also supports three sub-protocols - CXL.io, CXL.cache and CXL.mem.&#xA;Apart from protocols, CXL specifications also defines three device types - Type 1, Type 2 and Type 3.&lt;/p&gt;&#xA;&lt;p&gt;Type 1 devices are specialized accelerators (e.g., smart NIC) with no local memory and rely on coherent access to host CPU memory using CXL.io and CXL.cache sub-protocols.&#xA;Type 2 devices are general-purpose accelerators (e.g., GPU) with local memory that can coherently access host CPU memory and provide coherent or non-coherent access to device local memory using CXL.io, CXL.cache and CXL.mem sub-protocols.&#xA;Type 3 CXL devices are memory expanders (e.g., CXL-attached DRAM) that allow access to device local memory using the CXL.io and CXL.mem sub-protocols.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Direct Access (DAX)</title>
+      <link>http://localhost:1313/docs/systems/storage/dax/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/systems/storage/dax/</guid>
+      <description>&lt;h1 id=&#34;direct-access-dax&#34;&gt;&#xA;  Direct Access (DAX)&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#direct-access-dax&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;dax-io-path&#34;&gt;&#xA;  DAX I/O Path&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#dax-io-path&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Source: &lt;a href=&#34;https://pmem.io/glossary/&#34; target=&#34;_blank&#34; &gt;Pmem.io&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://pmem.io/glossary/programming-model/access_slide.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;Source: &lt;a href=&#34;https://www.storagereview.com/news/intel-optane-dc-persistent-memory-module-pmm&#34; target=&#34;_blank&#34; &gt;StorageReview&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.storagereview.com/wp-content/uploads/2019/04/StorageReview-Intel-Optane-DC-PMEM-Storage-over-App-Direct.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;fsdax-vs-devdax&#34;&gt;&#xA;  FSDAX vs. DEVDAX&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#fsdax-vs-devdax&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;</description>
+    </item>
+    <item>
+      <title>SSD Data Structures</title>
+      <link>http://localhost:1313/docs/systems/storage/ssd_data_structures/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/systems/storage/ssd_data_structures/</guid>
+      <description>&lt;h1 id=&#34;data-structures-inside-ssd-flash-translation-layer-ftl&#34;&gt;&#xA;  Data structures inside SSD Flash Translation Layer (FTL)&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#data-structures-inside-ssd-flash-translation-layer-ftl&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;[I’ll edit this article in multiple iterations.]&lt;/p&gt;&#xA;&lt;p&gt;Lets’ start with a brief overview of data structure groupings by FTL component or function. Please keep in mind that some data structures are used by multiple FTL componens or functions.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;book-hint info&#34;&gt;&#xA;  &lt;pre&gt;&lt;code&gt;Address mapping&#xA;    Direct mapping table&#xA;    Mapping cache&#xA;    Global Mapping Directory (GMD)&#xA;    Reverse mapping&#xA;&#xA;Garbage Collection&#xA;    Block validity counter (BVC)&#xA;    Page validity counter (PVC)&#xA;&#xA;Transaction processing&#xA;    Free block list&#xA;    Data cache&#xA;    Chip queue&#xA;&#xA;Wear Leveling&#xA;&#xA;Bad block management&#xA;&#xA;FTL recovery/restore&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="List of state-of-the-art checkpointing and failure recovery mechanism for machine learning.
+
+  CheckFreq
+  #
+
+Paper |
+Code
+
+  Check-N-Run
+  #
+
+Paper
+
+  GPM
+  #
+
+Paper |
+Code
+
+  Swift
+  #
+
+Paper
+
+  LightCheck
+  #
+
+Paper |
+Code">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/ml/checkpointing/">
+  <meta property="og:site_name" content="Hoyto ...">
+  <meta property="og:title" content="Checkpointing">
+  <meta property="og:description" content="List of state-of-the-art checkpointing and failure recovery mechanism for machine learning.
+CheckFreq # Paper | Code
+Check-N-Run # Paper
+GPM # Paper | Code
+Swift # Paper
+LightCheck # Paper | Code">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+<title>Checkpointing | Hoyto ...</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.b67cae1a43d6e1fb8db85deb339bc71264f1e6f14aaf15a557167e37246e7346.css" integrity="sha256-tnyuGkPW4fuNuF3rM5vHEmTx5vFKrxWlVxZ&#43;NyRuc0Y=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.f80647a877d60626cc8e69beea1e83337dae78043365e56abcbecfa64644d87d.js" integrity="sha256-&#43;AZHqHfWBibMjmm&#43;6h6DM32ueAQzZeVqvL7PpkZE2H0=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/docs/ml/checkpointing/index.xml" title="Hoyto ..." />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Hoyto ...</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-27ea0c642ea54e6cd5149afc21584915" class="toggle"  />
+    <label for="section-27ea0c642ea54e6cd5149afc21584915" class="flex justify-between">
+      <a role="button" class="">Data Structures &amp; Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72131ba8b64056ec0e5941e65dbf0e77" class="toggle"  />
+    <label for="section-72131ba8b64056ec0e5941e65dbf0e77" class="flex justify-between">
+      <a role="button" class="">Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/algorithm/sorting/" class="">Sorting</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3ca14029faf98cc80f3ba74dae51eb1c" class="toggle"  />
+    <label for="section-3ca14029faf98cc80f3ba74dae51eb1c" class="flex justify-between">
+      <a role="button" class="">Data Structures</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-47d68c54e7e4e58d80db1292f493ca73" class="toggle"  />
+    <label for="section-47d68c54e7e4e58d80db1292f493ca73" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/linked_list/" class="">Linked List</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/update/" class="">Update</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-74f1dbafb27b15c7d5e250d7096f8285" class="toggle"  />
+    <label for="section-74f1dbafb27b15c7d5e250d7096f8285" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/linked_list/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d052271d014d27773e5ccca356a3af4a" class="toggle"  />
+    <label for="section-d052271d014d27773e5ccca356a3af4a" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/hash_table/" class="">Hash Table</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-180e33121504dfd35faadc57d07876f6" class="toggle"  />
+    <label for="section-180e33121504dfd35faadc57d07876f6" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/binary_tree/" class="">Binary Tree</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-77f118cf38ea1ace2e771bb9265b98f0" class="toggle"  />
+    <label for="section-77f118cf38ea1ace2e771bb9265b98f0" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/binary_tree/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c658f04e69b96e501e190fe16269f047" class="toggle"  />
+    <label for="section-c658f04e69b96e501e190fe16269f047" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/heap/" class="">Heap</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/stack/" class="">Stack</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="toggle" checked />
+    <label for="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="flex justify-between">
+      <a role="button" class="">Machine Learning</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be9e9a6863a691ff246cc0ef6ba064c0" class="toggle"  />
+    <label for="section-be9e9a6863a691ff246cc0ef6ba064c0" class="flex justify-between">
+      <a role="button" class="">Datasets</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e48506722f290c30e510d4bb88018ead" class="toggle"  />
+    <label for="section-e48506722f290c30e510d4bb88018ead" class="flex justify-between">
+      <a href="/docs/ml/datasets/tiny_imagenet/" class="">Tiny ImageNet</a>
+    </label>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-21ae5bd001035865dd674b39a245d790" class="toggle" checked />
+    <label for="section-21ae5bd001035865dd674b39a245d790" class="flex justify-between">
+      <a href="/docs/ml/checkpointing/" class="active">Checkpointing</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ml/checkpointing/checkfreq/" class="">CheckFreq</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b9dd7809efc0de1493446eb73e9f9047" class="toggle"  />
+    <label for="section-b9dd7809efc0de1493446eb73e9f9047" class="flex justify-between">
+      <a role="button" class="">Computer Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4817d0e206325b770adf43460e7fc477" class="toggle"  />
+    <label for="section-4817d0e206325b770adf43460e7fc477" class="flex justify-between">
+      <a href="/docs/systems/cross_cutting_issues/" class="">Cross Cutting Issues</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/alignment/" class="">Data Access Alignment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/device_driver/" class="">Device Driver</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be86044918f6ff386621aa88c154d6df" class="toggle"  />
+    <label for="section-be86044918f6ff386621aa88c154d6df" class="flex justify-between">
+      <a role="button" class="">Operating Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/booting/" class="">Booting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/cpu/" class="">CPU</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/io_path/" class="">I/O Path</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="toggle"  />
+    <label for="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="flex justify-between">
+      <a role="button" class="">Storage Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/cxl/" class="">Compute Express Link (CXL)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/dax/" class="">Direct Access (DAX)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/ssd_data_structures/" class="">SSD Data Structures</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-49e56af90e297b291fcbf9ec542e1e05" class="toggle"  />
+    <label for="section-49e56af90e297b291fcbf9ec542e1e05" class="flex justify-between">
+      <a role="button" class="">SQL</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Checkpointing</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#checkfreq">CheckFreq</a></li>
+    <li><a href="#check-n-run">Check-N-Run</a></li>
+    <li><a href="#gpm">GPM</a></li>
+    <li><a href="#swift">Swift</a></li>
+    <li><a href="#lightcheck">LightCheck</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>List of state-of-the-art checkpointing and failure recovery mechanism for machine learning.</p>
+<h2 id="checkfreq">
+  CheckFreq
+  <a class="anchor" href="#checkfreq">#</a>
+</h2>
+<p><a href="https://www.usenix.org/conference/fast21/presentation/mohan" target="_blank" >Paper</a> |
+<a href="https://github.com/msr-fiddle/CheckFreq/tree/main" target="_blank" >Code</a></p>
+<h2 id="check-n-run">
+  Check-N-Run
+  <a class="anchor" href="#check-n-run">#</a>
+</h2>
+<p><a href="https://www.usenix.org/conference/nsdi22/presentation/eisenman" target="_blank" >Paper</a></p>
+<h2 id="gpm">
+  GPM
+  <a class="anchor" href="#gpm">#</a>
+</h2>
+<p><a href="https://www.csa.iisc.ac.in/~arkapravab/papers/ASPLOS22_GPM.pdf" target="_blank" >Paper</a> |
+<a href="https://github.com/csl-iisc/GPM-ASPLOS22/tree/master" target="_blank" >Code</a></p>
+<h2 id="swift">
+  Swift
+  <a class="anchor" href="#swift">#</a>
+</h2>
+<p><a href="https://arxiv.org/abs/2302.06173" target="_blank" >Paper</a></p>
+<h2 id="lightcheck">
+  LightCheck
+  <a class="anchor" href="#lightcheck">#</a>
+</h2>
+<p><a href="https://csyhua.github.io/csyhua/hua-iccd2023-LightCheck.pdf" target="_blank" >Paper</a> |
+<a href="https://github.com/LighT-chenml/LightCheck/tree/main" target="_blank" >Code</a></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#checkfreq">CheckFreq</a></li>
+    <li><a href="#check-n-run">Check-N-Run</a></li>
+    <li><a href="#gpm">GPM</a></li>
+    <li><a href="#swift">Swift</a></li>
+    <li><a href="#lightcheck">LightCheck</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

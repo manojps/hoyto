@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Traverse linked list # Traverse the entire linked list # while head: head = head.next Traverse without modifying the head # Traverse with additional state variable # current_node = head while current_node: current_node = current_node.next Traverse with sentinel head only # sentinel_head = Node(None, head) while head: head = head.next return sentinel_head.next Traverse with sentinel head and tail # Traverse even nodes only / Skip every other node # even_node = head while even_node.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="Traverse linked list # Traverse the entire linked list # while head: head = head.next Traverse without modifying the head # Traverse with additional state variable # current_node = head while current_node: current_node = current_node.next Traverse with sentinel head only # sentinel_head = Node(None, head) while head: head = head.next return sentinel_head.next Traverse with sentinel head and tail # Traverse even nodes only / Skip every other node # even_node = head while even_node." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.org/docs/dsa/linked_list/search/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Search | Notes on Computer Systems and Machine Learning</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.8e909cee1c7d71e47b01debec2b3e8d6305243984f14881904ba630097da2ffc.js" integrity="sha256-jpCc7hx9ceR7Ad6&#43;wrPo1jBSQ5hPFIgZBLpjAJfaL/w=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Notes on Computer Systems and Machine Learning</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-fdd19ee6896031f6f50ec7f9758471fb" class="toggle" checked />
+    <label for="section-fdd19ee6896031f6f50ec7f9758471fb" class="flex justify-between">
+      <a role="button" class="">Data Structures &amp; Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e677ea75b71a7020c3ca5f0683d99f94" class="toggle" checked />
+    <label for="section-e677ea75b71a7020c3ca5f0683d99f94" class="flex justify-between">
+      <a href="/docs/dsa/linked_list/" class="">Linked List</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/search/" class="active">Search</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/update/" class="">Update</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-45ba920fd17da930f59237b7d98b96d7" class="toggle"  />
+    <label for="section-45ba920fd17da930f59237b7d98b96d7" class="flex justify-between">
+      <a href="/docs/dsa/linked_list/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9315127567e8a1392d64b7d83101c1a1" class="toggle"  />
+    <label for="section-9315127567e8a1392d64b7d83101c1a1" class="flex justify-between">
+      <a href="/docs/dsa/hash_table/" class="">Hash Table</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ce176d7fb7f6e8bdce06d9ce8eed99d8" class="toggle"  />
+    <label for="section-ce176d7fb7f6e8bdce06d9ce8eed99d8" class="flex justify-between">
+      <a href="/docs/dsa/binary_tree/" class="">Binary Tree</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/binary_tree/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/binary_tree/search/" class="">Search</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/binary_tree/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7c781d558f5ce182b6a7be12f55c2b14" class="toggle"  />
+    <label for="section-7c781d558f5ce182b6a7be12f55c2b14" class="flex justify-between">
+      <a href="/docs/dsa/binary_tree/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-44b9ba4a561022c85c2fc14604aeee62" class="toggle"  />
+    <label for="section-44b9ba4a561022c85c2fc14604aeee62" class="flex justify-between">
+      <a href="/docs/dsa/heap/" class="">Heap</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/stack/" class="">Stack</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4b521f132daed953e2cf91a6917b8c98" class="toggle"  />
+    <label for="section-4b521f132daed953e2cf91a6917b8c98" class="flex justify-between">
+      <a role="button" class="">Machine Learning</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-dfb5ff37cd500cd9c08282c9a6bf0feb" class="toggle"  />
+    <label for="section-dfb5ff37cd500cd9c08282c9a6bf0feb" class="flex justify-between">
+      <a role="button" class="">Datasets</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6fcaa16f94276d98352a84b8119e3628" class="toggle"  />
+    <label for="section-6fcaa16f94276d98352a84b8119e3628" class="flex justify-between">
+      <a href="/docs/ml/datasets/tiny_imagenet/" class="">Tiny ImageNet</a>
+    </label>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92c0a8b2986b9fbf8f9496f1592ecff8" class="toggle"  />
+    <label for="section-92c0a8b2986b9fbf8f9496f1592ecff8" class="flex justify-between">
+      <a href="/docs/ml/checkpointing/" class="">Checkpointing</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ml/checkpointing/checkfreq/" class="">CheckFreq</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-949fb158cda5a1348a308791a04a17ba" class="toggle"  />
+    <label for="section-949fb158cda5a1348a308791a04a17ba" class="flex justify-between">
+      <a role="button" class="">Computer Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3867ff0361d0a229e30a44c51cf47ef1" class="toggle"  />
+    <label for="section-3867ff0361d0a229e30a44c51cf47ef1" class="flex justify-between">
+      <a role="button" class="">Operating Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/booting/" class="">Booting</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3831844ee75d62b5b7626777fbe421a8" class="toggle"  />
+    <label for="section-3831844ee75d62b5b7626777fbe421a8" class="flex justify-between">
+      <a role="button" class="">Storage Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/ssd_data_structures/" class="">SSD Data Structures</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e6b75252305a86840411664cb2e84e9c" class="toggle"  />
+    <label for="section-e6b75252305a86840411664cb2e84e9c" class="flex justify-between">
+      <a role="button" class="">SQL</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Search</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#traverse-the-entire-linked-list">Traverse the entire linked list</a></li>
+    <li><a href="#traverse-without-modifying-the-head">Traverse without modifying the head</a>
+      <ul>
+        <li><a href="#traverse-with-additional-state-variable">Traverse with additional state variable</a></li>
+        <li><a href="#traverse-with-sentinel-head-only">Traverse with sentinel head only</a></li>
+        <li><a href="#traverse-with-sentinel-head-and-tail">Traverse with sentinel head and tail</a></li>
+      </ul>
+    </li>
+    <li><a href="#traverse-even-nodes-only--skip-every-other-node">Traverse even nodes only / Skip every other node</a></li>
+    <li><a href="#traverse-simultaneously-at-different-speeds">Traverse simultaneously at different speeds</a>
+      <ul>
+        <li><a href="#consistent-speeds">Consistent speeds</a></li>
+        <li><a href="#variable-speed-based-on-condition">Variable speed based on condition</a></li>
+      </ul>
+    </li>
+    <li><a href="#traverse-with-memory">Traverse with memory</a>
+      <ul>
+        <li><a href="#remember-if-value-is-seen-before">Remember if value is seen before:</a></li>
+        <li><a href="#remember-node-memory-location-wo-duplicate-values">Remember node memory location (w/o duplicate values)</a></li>
+        <li><a href="#remember-node-memory-location-w-or-wo-duplicate-values">Remember node memory location (w/ or w/o duplicate values)</a></li>
+        <li><a href="#remember-the-most-recent-node-with-a-duplicate-value">Remember the most recent node with a duplicate value</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="traverse-linked-list">
+  Traverse linked list
+  <a class="anchor" href="#traverse-linked-list">#</a>
+</h1>
+<h2 id="traverse-the-entire-linked-list">
+  Traverse the entire linked list
+  <a class="anchor" href="#traverse-the-entire-linked-list">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> head:
+</span></span><span style="display:flex;"><span>    head <span style="color:#f92672">=</span> head<span style="color:#f92672">.</span>next
+</span></span></code></pre></div><h2 id="traverse-without-modifying-the-head">
+  Traverse without modifying the head
+  <a class="anchor" href="#traverse-without-modifying-the-head">#</a>
+</h2>
+<h3 id="traverse-with-additional-state-variable">
+  Traverse with additional state variable
+  <a class="anchor" href="#traverse-with-additional-state-variable">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>current_node <span style="color:#f92672">=</span> head
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> current_node:
+</span></span><span style="display:flex;"><span>    current_node <span style="color:#f92672">=</span> current_node<span style="color:#f92672">.</span>next
+</span></span></code></pre></div><h3 id="traverse-with-sentinel-head-only">
+  Traverse with sentinel head only
+  <a class="anchor" href="#traverse-with-sentinel-head-only">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sentinel_head <span style="color:#f92672">=</span> Node(<span style="color:#66d9ef">None</span>, head)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> head:
+</span></span><span style="display:flex;"><span>    head <span style="color:#f92672">=</span> head<span style="color:#f92672">.</span>next
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> sentinel_head<span style="color:#f92672">.</span>next
+</span></span></code></pre></div><h3 id="traverse-with-sentinel-head-and-tail">
+  Traverse with sentinel head and tail
+  <a class="anchor" href="#traverse-with-sentinel-head-and-tail">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"></code></pre></div><h2 id="traverse-even-nodes-only--skip-every-other-node">
+  Traverse even nodes only / Skip every other node
+  <a class="anchor" href="#traverse-even-nodes-only--skip-every-other-node">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>even_node <span style="color:#f92672">=</span> head
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> even_node<span style="color:#f92672">.</span>next:
+</span></span><span style="display:flex;"><span>    even_node <span style="color:#f92672">=</span> even_node<span style="color:#f92672">.</span>next<span style="color:#f92672">.</span>next
+</span></span></code></pre></div><h2 id="traverse-simultaneously-at-different-speeds">
+  Traverse simultaneously at different speeds
+  <a class="anchor" href="#traverse-simultaneously-at-different-speeds">#</a>
+</h2>
+<h3 id="consistent-speeds">
+  Consistent speeds
+  <a class="anchor" href="#consistent-speeds">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>slow_pointer <span style="color:#f92672">=</span> head
+</span></span><span style="display:flex;"><span>fast_pointer <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> slow_pointer<span style="color:#f92672">.</span>next:
+</span></span><span style="display:flex;"><span>    slow_pointer <span style="color:#f92672">=</span> slow_pointer<span style="color:#f92672">.</span>next
+</span></span><span style="display:flex;"><span>    fast_pointer <span style="color:#f92672">=</span> slow_pointer<span style="color:#f92672">.</span>next<span style="color:#f92672">.</span>next
+</span></span></code></pre></div><h3 id="variable-speed-based-on-condition">
+  Variable speed based on condition
+  <a class="anchor" href="#variable-speed-based-on-condition">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"></code></pre></div><p>Comment: Variable length sliding window</p>
+<h2 id="traverse-with-memory">
+  Traverse with memory
+  <a class="anchor" href="#traverse-with-memory">#</a>
+</h2>
+<h3 id="remember-if-value-is-seen-before">
+  Remember if value is seen before:
+  <a class="anchor" href="#remember-if-value-is-seen-before">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>seen <span style="color:#f92672">=</span> set() <span style="color:#75715e"># Why not use Python dictionary?</span>
+</span></span><span style="display:flex;"><span>current_node <span style="color:#f92672">=</span> head
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> current_node:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> current_node<span style="color:#f92672">.</span>value <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> seen:
+</span></span><span style="display:flex;"><span>        seen<span style="color:#f92672">.</span>add(current_node<span style="color:#f92672">.</span>value)
+</span></span><span style="display:flex;"><span>    current_node <span style="color:#f92672">=</span> current_node<span style="color:#f92672">.</span>next
+</span></span></code></pre></div><p>Comment: Detect duplicate values</p>
+<h3 id="remember-node-memory-location-wo-duplicate-values">
+  Remember node memory location (w/o duplicate values)
+  <a class="anchor" href="#remember-node-memory-location-wo-duplicate-values">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>memory <span style="color:#f92672">=</span> {} <span style="color:#75715e"># Why not use Python set?</span>
+</span></span><span style="display:flex;"><span>current_node <span style="color:#f92672">=</span> head
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> current_node:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> current_node<span style="color:#f92672">.</span>value <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> memory:
+</span></span><span style="display:flex;"><span>        memory[current_node<span style="color:#f92672">.</span>value] <span style="color:#f92672">=</span> current_node
+</span></span><span style="display:flex;"><span>    current_node <span style="color:#f92672">=</span> current_node<span style="color:#f92672">.</span>next
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<h3 id="remember-node-memory-location-w-or-wo-duplicate-values">
+  Remember node memory location (w/ or w/o duplicate values)
+  <a class="anchor" href="#remember-node-memory-location-w-or-wo-duplicate-values">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>memory <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>current_node <span style="color:#f92672">=</span> head
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> current_node:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> current_node<span style="color:#f92672">.</span>value <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> memory:
+</span></span><span style="display:flex;"><span>        memory[current_node<span style="color:#f92672">.</span>value] <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    memory[current_node<span style="color:#f92672">.</span>value]<span style="color:#f92672">.</span>append(current_node)
+</span></span><span style="display:flex;"><span>    current_node <span style="color:#f92672">=</span> current_node<span style="color:#f92672">.</span>next
+</span></span></code></pre></div><h3 id="remember-the-most-recent-node-with-a-duplicate-value">
+  Remember the most recent node with a duplicate value
+  <a class="anchor" href="#remember-the-most-recent-node-with-a-duplicate-value">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>memory <span style="color:#f92672">=</span> {} <span style="color:#75715e"># Why not use Python set?</span>
+</span></span><span style="display:flex;"><span>current_node <span style="color:#f92672">=</span> head
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> current_node:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> current_node<span style="color:#f92672">.</span>value <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> memory:
+</span></span><span style="display:flex;"><span>        memory[current_node<span style="color:#f92672">.</span>value] <span style="color:#f92672">=</span> current_node
+</span></span><span style="display:flex;"><span>    current_node <span style="color:#f92672">=</span> current_node<span style="color:#f92672">.</span>next
+</span></span></code></pre></div><p>Comment: Cache implementation</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#traverse-the-entire-linked-list">Traverse the entire linked list</a></li>
+    <li><a href="#traverse-without-modifying-the-head">Traverse without modifying the head</a>
+      <ul>
+        <li><a href="#traverse-with-additional-state-variable">Traverse with additional state variable</a></li>
+        <li><a href="#traverse-with-sentinel-head-only">Traverse with sentinel head only</a></li>
+        <li><a href="#traverse-with-sentinel-head-and-tail">Traverse with sentinel head and tail</a></li>
+      </ul>
+    </li>
+    <li><a href="#traverse-even-nodes-only--skip-every-other-node">Traverse even nodes only / Skip every other node</a></li>
+    <li><a href="#traverse-simultaneously-at-different-speeds">Traverse simultaneously at different speeds</a>
+      <ul>
+        <li><a href="#consistent-speeds">Consistent speeds</a></li>
+        <li><a href="#variable-speed-based-on-condition">Variable speed based on condition</a></li>
+      </ul>
+    </li>
+    <li><a href="#traverse-with-memory">Traverse with memory</a>
+      <ul>
+        <li><a href="#remember-if-value-is-seen-before">Remember if value is seen before:</a></li>
+        <li><a href="#remember-node-memory-location-wo-duplicate-values">Remember node memory location (w/o duplicate values)</a></li>
+        <li><a href="#remember-node-memory-location-w-or-wo-duplicate-values">Remember node memory location (w/ or w/o duplicate values)</a></li>
+        <li><a href="#remember-the-most-recent-node-with-a-duplicate-value">Remember the most recent node with a duplicate value</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

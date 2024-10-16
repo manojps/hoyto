@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Tiny ImageNet
+  #
+
+Can be used as a substitute of ImageNet dataset. It has 200 classes with image sizes of 64x64 pixels. Test set is not labeled. Validation set needs to be used as test set. Validation set needs some preprocessing before it can be used for evaluating the model. Directly passing the images to application will result in incorrect validation/test accuracy.
+
+  Download dataset
+  #
+
+wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
+
+  Create Dataloader
+  #
+
+There are two ways to create data loaders for Tiny ImageNet. One is using torchvision.datasets.ImageFolder and the other is through Python dictionary.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/ml/datasets/tiny_imagenet/">
+  <meta property="og:site_name" content="Hoyto ...">
+  <meta property="og:title" content="Tiny ImageNet">
+  <meta property="og:description" content=" Tiny ImageNet # Can be used as a substitute of ImageNet dataset. It has 200 classes with image sizes of 64x64 pixels. Test set is not labeled. Validation set needs to be used as test set. Validation set needs some preprocessing before it can be used for evaluating the model. Directly passing the images to application will result in incorrect validation/test accuracy.
+Download dataset # wget http://cs231n.stanford.edu/tiny-imagenet-200.zip Create Dataloader # There are two ways to create data loaders for Tiny ImageNet. One is using torchvision.datasets.ImageFolder and the other is through Python dictionary.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+<title>Tiny ImageNet | Hoyto ...</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.b67cae1a43d6e1fb8db85deb339bc71264f1e6f14aaf15a557167e37246e7346.css" integrity="sha256-tnyuGkPW4fuNuF3rM5vHEmTx5vFKrxWlVxZ&#43;NyRuc0Y=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.f80647a877d60626cc8e69beea1e83337dae78043365e56abcbecfa64644d87d.js" integrity="sha256-&#43;AZHqHfWBibMjmm&#43;6h6DM32ueAQzZeVqvL7PpkZE2H0=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Hoyto ...</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-27ea0c642ea54e6cd5149afc21584915" class="toggle"  />
+    <label for="section-27ea0c642ea54e6cd5149afc21584915" class="flex justify-between">
+      <a role="button" class="">Data Structures &amp; Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72131ba8b64056ec0e5941e65dbf0e77" class="toggle"  />
+    <label for="section-72131ba8b64056ec0e5941e65dbf0e77" class="flex justify-between">
+      <a role="button" class="">Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/algorithm/sorting/" class="">Sorting</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3ca14029faf98cc80f3ba74dae51eb1c" class="toggle"  />
+    <label for="section-3ca14029faf98cc80f3ba74dae51eb1c" class="flex justify-between">
+      <a role="button" class="">Data Structures</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-47d68c54e7e4e58d80db1292f493ca73" class="toggle"  />
+    <label for="section-47d68c54e7e4e58d80db1292f493ca73" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/linked_list/" class="">Linked List</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/update/" class="">Update</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-74f1dbafb27b15c7d5e250d7096f8285" class="toggle"  />
+    <label for="section-74f1dbafb27b15c7d5e250d7096f8285" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/linked_list/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d052271d014d27773e5ccca356a3af4a" class="toggle"  />
+    <label for="section-d052271d014d27773e5ccca356a3af4a" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/hash_table/" class="">Hash Table</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-180e33121504dfd35faadc57d07876f6" class="toggle"  />
+    <label for="section-180e33121504dfd35faadc57d07876f6" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/binary_tree/" class="">Binary Tree</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-77f118cf38ea1ace2e771bb9265b98f0" class="toggle"  />
+    <label for="section-77f118cf38ea1ace2e771bb9265b98f0" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/binary_tree/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c658f04e69b96e501e190fe16269f047" class="toggle"  />
+    <label for="section-c658f04e69b96e501e190fe16269f047" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/heap/" class="">Heap</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/stack/" class="">Stack</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="toggle" checked />
+    <label for="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="flex justify-between">
+      <a role="button" class="">Machine Learning</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be9e9a6863a691ff246cc0ef6ba064c0" class="toggle" checked />
+    <label for="section-be9e9a6863a691ff246cc0ef6ba064c0" class="flex justify-between">
+      <a role="button" class="">Datasets</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e48506722f290c30e510d4bb88018ead" class="toggle" checked />
+    <label for="section-e48506722f290c30e510d4bb88018ead" class="flex justify-between">
+      <a href="/docs/ml/datasets/tiny_imagenet/" class="active">Tiny ImageNet</a>
+    </label>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-21ae5bd001035865dd674b39a245d790" class="toggle"  />
+    <label for="section-21ae5bd001035865dd674b39a245d790" class="flex justify-between">
+      <a href="/docs/ml/checkpointing/" class="">Checkpointing</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ml/checkpointing/checkfreq/" class="">CheckFreq</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b9dd7809efc0de1493446eb73e9f9047" class="toggle"  />
+    <label for="section-b9dd7809efc0de1493446eb73e9f9047" class="flex justify-between">
+      <a role="button" class="">Computer Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4817d0e206325b770adf43460e7fc477" class="toggle"  />
+    <label for="section-4817d0e206325b770adf43460e7fc477" class="flex justify-between">
+      <a href="/docs/systems/cross_cutting_issues/" class="">Cross Cutting Issues</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/alignment/" class="">Data Access Alignment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/device_driver/" class="">Device Driver</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be86044918f6ff386621aa88c154d6df" class="toggle"  />
+    <label for="section-be86044918f6ff386621aa88c154d6df" class="flex justify-between">
+      <a role="button" class="">Operating Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/booting/" class="">Booting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/cpu/" class="">CPU</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/io_path/" class="">I/O Path</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="toggle"  />
+    <label for="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="flex justify-between">
+      <a role="button" class="">Storage Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/cxl/" class="">Compute Express Link (CXL)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/dax/" class="">Direct Access (DAX)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/ssd_data_structures/" class="">SSD Data Structures</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-49e56af90e297b291fcbf9ec542e1e05" class="toggle"  />
+    <label for="section-49e56af90e297b291fcbf9ec542e1e05" class="flex justify-between">
+      <a role="button" class="">SQL</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Tiny ImageNet</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#download-dataset">Download dataset</a></li>
+    <li><a href="#create-dataloader">Create Dataloader</a>
+      <ul>
+        <li><a href="#using-torchvisiondatasetsimagefolder">Using torchvision.datasets.ImageFolder</a></li>
+        <li><a href="#using-torchvisionioread_image-and-python-dictionary">Using torchvision.io.read_image and Python dictionary</a></li>
+        <li><a href="#set-num_classes200">Set num_classes=200</a></li>
+        <li><a href="#remove-label_boxestxt-files">Remove &lt;label&gt;_boxes.txt files</a></li>
+        <li><a href="#why-upsample-images">Why upsample images?</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="tiny-imagenet">
+  Tiny ImageNet
+  <a class="anchor" href="#tiny-imagenet">#</a>
+</h1>
+<p>Can be used as a substitute of <a href="https://www.image-net.org/" target="_blank" >ImageNet</a> dataset. It has 200 classes with image sizes of 64x64 pixels. Test set is not labeled. Validation set needs to be used as test set. Validation set needs some preprocessing before it can be used for evaluating the model. Directly passing the images to application will result in incorrect validation/test accuracy.</p>
+<h2 id="download-dataset">
+  Download dataset
+  <a class="anchor" href="#download-dataset">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
+</span></span></code></pre></div><h2 id="create-dataloader">
+  Create Dataloader
+  <a class="anchor" href="#create-dataloader">#</a>
+</h2>
+<p>There are two ways to create data loaders for Tiny ImageNet. One is using <code>torchvision.datasets.ImageFolder</code> and the other is through Python dictionary.</p>
+<h3 id="using-torchvisiondatasetsimagefolder">
+  Using torchvision.datasets.ImageFolder
+  <a class="anchor" href="#using-torchvisiondatasetsimagefolder">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Modified from https://github.com/DennisHanyuanXu/Tiny-ImageNet/blob/master/src/data_prep.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os<span style="color:#f92672">,</span> glob
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision.transforms <span style="color:#66d9ef">as</span> transforms
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> Dataset
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision <span style="color:#f92672">import</span> datasets
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_val_img_folder</span>(configs):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    This method is responsible for separating validation images into separate sub folders
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># dataset_dir = os.path.join(args.data_dir, args.dataset)</span>
+</span></span><span style="display:flex;"><span>    val_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(configs<span style="color:#f92672">.</span>data_path, <span style="color:#e6db74">&#39;val&#39;</span>)
+</span></span><span style="display:flex;"><span>    img_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(val_dir, <span style="color:#e6db74">&#39;images&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    fp <span style="color:#f92672">=</span> open(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(val_dir, <span style="color:#e6db74">&#39;val_annotations.txt&#39;</span>), <span style="color:#e6db74">&#39;r&#39;</span>)
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> fp<span style="color:#f92672">.</span>readlines()
+</span></span><span style="display:flex;"><span>    val_img_dict <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> data:
+</span></span><span style="display:flex;"><span>        words <span style="color:#f92672">=</span> line<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>        val_img_dict[words[<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> words[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>    fp<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Create folder if not present and move images into proper folders</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> img, folder <span style="color:#f92672">in</span> val_img_dict<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>        newpath <span style="color:#f92672">=</span> (os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(img_dir, folder))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(newpath):
+</span></span><span style="display:flex;"><span>            os<span style="color:#f92672">.</span>makedirs(newpath)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(img_dir, img)):
+</span></span><span style="display:flex;"><span>            os<span style="color:#f92672">.</span>rename(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(img_dir, img), os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(newpath, img))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use either load_tiny_imagenet1() or load_tiny_imagenet2()</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_tiny_imagenet1</span>(configs):
+</span></span><span style="display:flex;"><span>    create_val_img_folder(configs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(configs<span style="color:#f92672">.</span>data_path, <span style="color:#e6db74">&#39;train&#39;</span>)
+</span></span><span style="display:flex;"><span>    val_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(configs<span style="color:#f92672">.</span>data_path, <span style="color:#e6db74">&#39;val&#39;</span>, <span style="color:#e6db74">&#39;images&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># kwargs = {} if args.no_cuda else {&#39;num_workers&#39;: 1, &#39;pin_memory&#39;: True}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Pre-calculated mean &amp; std on imagenet:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># norm = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># For other datasets, we could just simply use 0.5:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># norm = transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Normalization</span>
+</span></span><span style="display:flex;"><span>    norm <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Normalize(mean<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.5</span>], std<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.5</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_trans <span style="color:#f92672">=</span> [transforms<span style="color:#f92672">.</span>RandomHorizontalFlip(), transforms<span style="color:#f92672">.</span>ToTensor()]
+</span></span><span style="display:flex;"><span>    val_trans <span style="color:#f92672">=</span> [transforms<span style="color:#f92672">.</span>ToTensor(), norm]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_data <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>ImageFolder(train_dir, 
+</span></span><span style="display:flex;"><span>                                    transform<span style="color:#f92672">=</span>transforms<span style="color:#f92672">.</span>Compose(train_trans <span style="color:#f92672">+</span> [norm]))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    val_data <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>ImageFolder(val_dir, 
+</span></span><span style="display:flex;"><span>                                    transform<span style="color:#f92672">=</span>transforms<span style="color:#f92672">.</span>Compose(val_trans))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(train_data)
+</span></span><span style="display:flex;"><span>    print(val_data)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    train_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(train_data, batch_size<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>batch_size, 
+</span></span><span style="display:flex;"><span>                                                    num_workers<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>num_workers, shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    val_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(val_data, batch_size<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>batch_size, 
+</span></span><span style="display:flex;"><span>                                                    num_workers<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>num_workers, shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Number of iterations required to get through training data of length </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(
+</span></span><span style="display:flex;"><span>        len(train_data), len(train_loader)))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#39;train&#39;</span>: train_loader, <span style="color:#e6db74">&#39;test&#39;</span>: val_loader}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_tiny_imagenet2</span>(configs):
+</span></span><span style="display:flex;"><span>    create_val_img_folder(configs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># transform for the training data</span>
+</span></span><span style="display:flex;"><span>    train_transforms <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Compose([
+</span></span><span style="display:flex;"><span>        transforms<span style="color:#f92672">.</span>Resize(<span style="color:#ae81ff">224</span>),
+</span></span><span style="display:flex;"><span>        transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>        transforms<span style="color:#f92672">.</span>Normalize(mean<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.485</span>, <span style="color:#ae81ff">0.456</span>, <span style="color:#ae81ff">0.406</span>],
+</span></span><span style="display:flex;"><span>                             std<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.229</span>, <span style="color:#ae81ff">0.224</span>, <span style="color:#ae81ff">0.225</span>]),
+</span></span><span style="display:flex;"><span>    ])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    val_transforms <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Compose([
+</span></span><span style="display:flex;"><span>        transforms<span style="color:#f92672">.</span>Resize(<span style="color:#ae81ff">224</span>),
+</span></span><span style="display:flex;"><span>        transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>        transforms<span style="color:#f92672">.</span>Normalize(mean<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.485</span>, <span style="color:#ae81ff">0.456</span>, <span style="color:#ae81ff">0.406</span>],
+</span></span><span style="display:flex;"><span>                             std<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.229</span>, <span style="color:#ae81ff">0.224</span>, <span style="color:#ae81ff">0.225</span>]),
+</span></span><span style="display:flex;"><span>    ])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_data_path <span style="color:#f92672">=</span> configs<span style="color:#f92672">.</span>data_path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/train/&#34;</span>
+</span></span><span style="display:flex;"><span>    val_data_path <span style="color:#f92672">=</span> configs<span style="color:#f92672">.</span>data_path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/val/images/&#34;</span>
+</span></span><span style="display:flex;"><span>    train_set <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>ImageFolder(train_data_path, transform<span style="color:#f92672">=</span>train_transforms)
+</span></span><span style="display:flex;"><span>    val_set <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>ImageFolder(val_data_path, transform<span style="color:#f92672">=</span>val_transforms)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(train_set, batch_size<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>batch_size, 
+</span></span><span style="display:flex;"><span>                                        num_workers<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>num_workers, shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    val_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(val_set, batch_size<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>batch_size, 
+</span></span><span style="display:flex;"><span>                                        num_workers<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>num_workers, shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Number of iterations required to get through training data of length </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(
+</span></span><span style="display:flex;"><span>        len(train_set), len(train_loader)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#39;train&#39;</span>: train_loader, <span style="color:#e6db74">&#39;test&#39;</span>: val_loader}
+</span></span></code></pre></div><h3 id="using-torchvisionioread_image-and-python-dictionary">
+  Using torchvision.io.read_image and Python dictionary
+  <a class="anchor" href="#using-torchvisionioread_image-and-python-dictionary">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># https://github.com/pranavphoenix/TinyImageNetLoader/blob/main/tinyimagenetloader.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os<span style="color:#f92672">,</span> glob
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision.transforms <span style="color:#66d9ef">as</span> transforms
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> Dataset
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision <span style="color:#f92672">import</span> datasets
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision.io <span style="color:#f92672">import</span> read_image, ImageReadMode
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>id_dict <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TrainTinyImageNetDataset</span>(Dataset):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, data_path, id, transform<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>data_path <span style="color:#f92672">=</span> data_path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/*/*/*.JPEG&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>filenames <span style="color:#f92672">=</span> glob<span style="color:#f92672">.</span>glob(self<span style="color:#f92672">.</span>data_path)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>transform <span style="color:#f92672">=</span> transform
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>id_dict <span style="color:#f92672">=</span> id
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __len__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> len(self<span style="color:#f92672">.</span>filenames)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __getitem__(self, idx):
+</span></span><span style="display:flex;"><span>        img_path <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>filenames[idx]
+</span></span><span style="display:flex;"><span>        image <span style="color:#f92672">=</span> read_image(img_path)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> image<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>          image <span style="color:#f92672">=</span> read_image(img_path,ImageReadMode<span style="color:#f92672">.</span>RGB)
+</span></span><span style="display:flex;"><span>        print(img_path)
+</span></span><span style="display:flex;"><span>        label <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>id_dict[img_path<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;/&#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>]]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>transform:
+</span></span><span style="display:flex;"><span>            image <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>transform(image<span style="color:#f92672">.</span>type(torch<span style="color:#f92672">.</span>FloatTensor))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> image, label
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestTinyImageNetDataset</span>(Dataset):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, data_path, id, transform<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>data_path <span style="color:#f92672">=</span> data_path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/images/*.JPEG&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>filenames <span style="color:#f92672">=</span> glob<span style="color:#f92672">.</span>glob(self<span style="color:#f92672">.</span>data_path)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>transform <span style="color:#f92672">=</span> transform
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>id_dict <span style="color:#f92672">=</span> id
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>cls_dic <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>val_annotation <span style="color:#f92672">=</span> data_path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/val_annotations.txt&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i, line <span style="color:#f92672">in</span> enumerate(open(self<span style="color:#f92672">.</span>val_annotation, <span style="color:#e6db74">&#39;r&#39;</span>)):
+</span></span><span style="display:flex;"><span>            a <span style="color:#f92672">=</span> line<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>            img, cls_id <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span>],a[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>cls_dic[img] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>id_dict[cls_id]
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __len__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> len(self<span style="color:#f92672">.</span>filenames)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __getitem__(self, idx):
+</span></span><span style="display:flex;"><span>        img_path <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>filenames[idx]
+</span></span><span style="display:flex;"><span>        image <span style="color:#f92672">=</span> read_image(img_path)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> image<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>          image <span style="color:#f92672">=</span> read_image(img_path,ImageReadMode<span style="color:#f92672">.</span>RGB)
+</span></span><span style="display:flex;"><span>        label <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>cls_dic[img_path<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;/&#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>transform:
+</span></span><span style="display:flex;"><span>            image <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>transform(image<span style="color:#f92672">.</span>type(torch<span style="color:#f92672">.</span>FloatTensor))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_tiny_imagenet_dict</span>(configs):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># transform for the training data</span>
+</span></span><span style="display:flex;"><span>    data_path <span style="color:#f92672">=</span> configs<span style="color:#f92672">.</span>data_path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/wnids.txt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, line <span style="color:#f92672">in</span> enumerate(open(data_path, <span style="color:#e6db74">&#39;r&#39;</span>)):
+</span></span><span style="display:flex;"><span>        id_dict[line<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)] <span style="color:#f92672">=</span> i
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_transforms <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Compose([
+</span></span><span style="display:flex;"><span>        transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>        transforms<span style="color:#f92672">.</span>Normalize(mean<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.485</span>, <span style="color:#ae81ff">0.456</span>, <span style="color:#ae81ff">0.406</span>],
+</span></span><span style="display:flex;"><span>                             std<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.229</span>, <span style="color:#ae81ff">0.224</span>, <span style="color:#ae81ff">0.225</span>]),
+</span></span><span style="display:flex;"><span>    ]) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_data_path <span style="color:#f92672">=</span> configs<span style="color:#f92672">.</span>data_path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/train/&#34;</span>
+</span></span><span style="display:flex;"><span>    val_data_path <span style="color:#f92672">=</span> configs<span style="color:#f92672">.</span>data_path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/val_dict/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_set <span style="color:#f92672">=</span> TrainTinyImageNetDataset(data_path<span style="color:#f92672">=</span>train_data_path, id<span style="color:#f92672">=</span>id_dict, transform <span style="color:#f92672">=</span> train_transforms)
+</span></span><span style="display:flex;"><span>    val_set <span style="color:#f92672">=</span> TestTinyImageNetDataset(data_path<span style="color:#f92672">=</span>val_data_path, id<span style="color:#f92672">=</span>id_dict, transform<span style="color:#f92672">=</span>train_transforms)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(train_set, batch_size<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>batch_size, 
+</span></span><span style="display:flex;"><span>                                        num_workers<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>num_workers, shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    val_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(val_set, batch_size<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>batch_size, 
+</span></span><span style="display:flex;"><span>                                        num_workers<span style="color:#f92672">=</span>configs<span style="color:#f92672">.</span>num_workers, shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Number of iterations required to get through training data of length </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(
+</span></span><span style="display:flex;"><span>        len(train_set), len(train_loader)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#39;train&#39;</span>: train_loader, <span style="color:#e6db74">&#39;test&#39;</span>: val_loader}
+</span></span></code></pre></div><h3 id="set-num_classes200">
+  Set num_classes=200
+  <a class="anchor" href="#set-num_classes200">#</a>
+</h3>
+<p>Do not forget to set num_classes=200 in your model. Otherwise Pytorch may throw an error <code>RuntimeError: CUDA error: device-side assert triggered</code> if the application is run using the following command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>CUDA_LAUNCH_BLOCKING<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> python3 &lt;application_file_name&gt;.py
+</span></span></code></pre></div><h3 id="remove-label_boxestxt-files">
+  Remove &lt;label&gt;_boxes.txt files
+  <a class="anchor" href="#remove-label_boxestxt-files">#</a>
+</h3>
+<p>To remove &lt;label&gt;_boxes.txt files for training images, use the following bash script.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>parent<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;train&#34;</span>
+</span></span><span style="display:flex;"><span>cd <span style="color:#e6db74">&#34;</span>$parent<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> DIR in */
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span> 
+</span></span><span style="display:flex;"><span>    echo $DIR
+</span></span><span style="display:flex;"><span>    cd <span style="color:#e6db74">&#34;</span>$DIR<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    rm -f *.txt
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> test -d ./images
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        cd ./images
+</span></span><span style="display:flex;"><span>        mv * ../
+</span></span><span style="display:flex;"><span>        cd ..
+</span></span><span style="display:flex;"><span>        rm -r ./images
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>    cd ..
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><h3 id="why-upsample-images">
+  Why upsample images?
+  <a class="anchor" href="#why-upsample-images">#</a>
+</h3>
+<p>Tiny ImageNet samples are of 64x64 pixels. Whereas, models like ResNet 50 or resNet152 needs inputs sizes 224x224 pixels. When training from scratch, it is possible to reduce the input size in the models being used to 64x64 (e.g. VGG-16, ResNet50, Resnet152), eliminating the need for resizing the images by the dataloader. This is, however, may not be possible in pre-trained models. Interestingly, some people mentioned that reducing the input size to 64x64 pixels in the above mentioned models has resulted in lower model accuracy in their experiments. From my experience, reducing the input size can lower computations and significantly increase training speed.  Take a look at <a href="https://discuss.pytorch.org/t/transfer-learning-input-image-size/124081/22" target="_blank" >this discussion thread</a>.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#download-dataset">Download dataset</a></li>
+    <li><a href="#create-dataloader">Create Dataloader</a>
+      <ul>
+        <li><a href="#using-torchvisiondatasetsimagefolder">Using torchvision.datasets.ImageFolder</a></li>
+        <li><a href="#using-torchvisionioread_image-and-python-dictionary">Using torchvision.io.read_image and Python dictionary</a></li>
+        <li><a href="#set-num_classes200">Set num_classes=200</a></li>
+        <li><a href="#remove-label_boxestxt-files">Remove &lt;label&gt;_boxes.txt files</a></li>
+        <li><a href="#why-upsample-images">Why upsample images?</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

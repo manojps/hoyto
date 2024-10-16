@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hoyto ...</title>
+    <link>http://localhost:1313/docs/dsa/data_structure/binary_tree/</link>
+    <description>Recent content on Hoyto ...</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/docs/dsa/data_structure/binary_tree/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/docs/dsa/data_structure/binary_tree/insert/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/dsa/data_structure/binary_tree/insert/</guid>
+      <description>&lt;h1 id=&#34;insert-node&#34;&gt;&#xA;  Insert node&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#insert-node&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/docs/dsa/data_structure/binary_tree/traverse/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/dsa/data_structure/binary_tree/traverse/</guid>
+      <description>&lt;h1 id=&#34;traverse-binary-tree&#34;&gt;&#xA;  Traverse Binary Tree&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#traverse-binary-tree&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;TreeNode&lt;/span&gt;:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self, val):&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; val&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;visit&lt;/span&gt;(self):&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;bfs-traversal&#34;&gt;&#xA;  BFS traversal&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#bfs-traversal&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;level-order-traversal&#34;&gt;&#xA;  Level-order traversal&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#level-order-traversal&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;h2 id=&#34;dfs-traversal&#34;&gt;&#xA;  DFS traversal&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#dfs-traversal&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;DFS traversal of a binary tree can be used to solve the following problems.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;book-hint info&#34;&gt;&#xA;  Maximum width, minimum depth and diameter of a binary tree &lt;br&gt;&#xA;Binary tree iterator &lt;br&gt;&#xA;Convert a binary tree into a mirror tree &lt;br&gt;&#xA;Find k smallest/largest elements of a binary search tree &lt;br&gt;&#xA;Boundary traversal of binary tree &lt;br&gt;&#xA;Lowest common ancestor of two nodes in a binary tree &lt;br&gt;&#xA;Construct a binary tree from pre-order and in-order traversal&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h3 id=&#34;pre-order-traversal&#34;&gt;&#xA;  Pre-order traversal&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#pre-order-traversal&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Parent -&amp;gt; Left child -&amp;gt; Right child&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/docs/dsa/data_structure/binary_tree/delete/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/dsa/data_structure/binary_tree/delete/</guid>
+      <description>&lt;h1 id=&#34;delete-node&#34;&gt;&#xA;  Delete node&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#delete-node&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/docs/dsa/data_structure/binary_tree/update/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/dsa/data_structure/binary_tree/update/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

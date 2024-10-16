@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  How do computers boot up?
+  #
+
+When we power up a computer, how does it know where to find an operating system? How does a computer identify that a particular program or executable file is an operating system and decide it will have the privilege to control the system? How does it know how to boot an entire operating system which may consist of more than a single executable file? How does an operating system take control of the system?">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/systems/os/booting/">
+  <meta property="og:site_name" content="Hoyto ...">
+  <meta property="og:title" content="Hoyto ...">
+  <meta property="og:description" content=" How do computers boot up? # When we power up a computer, how does it know where to find an operating system? How does a computer identify that a particular program or executable file is an operating system and decide it will have the privilege to control the system? How does it know how to boot an entire operating system which may consist of more than a single executable file? How does an operating system take control of the system?">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+<title>Booting | Hoyto ...</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.b67cae1a43d6e1fb8db85deb339bc71264f1e6f14aaf15a557167e37246e7346.css" integrity="sha256-tnyuGkPW4fuNuF3rM5vHEmTx5vFKrxWlVxZ&#43;NyRuc0Y=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.f80647a877d60626cc8e69beea1e83337dae78043365e56abcbecfa64644d87d.js" integrity="sha256-&#43;AZHqHfWBibMjmm&#43;6h6DM32ueAQzZeVqvL7PpkZE2H0=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Hoyto ...</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-27ea0c642ea54e6cd5149afc21584915" class="toggle"  />
+    <label for="section-27ea0c642ea54e6cd5149afc21584915" class="flex justify-between">
+      <a role="button" class="">Data Structures &amp; Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72131ba8b64056ec0e5941e65dbf0e77" class="toggle"  />
+    <label for="section-72131ba8b64056ec0e5941e65dbf0e77" class="flex justify-between">
+      <a role="button" class="">Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/algorithm/sorting/" class="">Sorting</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3ca14029faf98cc80f3ba74dae51eb1c" class="toggle"  />
+    <label for="section-3ca14029faf98cc80f3ba74dae51eb1c" class="flex justify-between">
+      <a role="button" class="">Data Structures</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-47d68c54e7e4e58d80db1292f493ca73" class="toggle"  />
+    <label for="section-47d68c54e7e4e58d80db1292f493ca73" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/linked_list/" class="">Linked List</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/update/" class="">Update</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-74f1dbafb27b15c7d5e250d7096f8285" class="toggle"  />
+    <label for="section-74f1dbafb27b15c7d5e250d7096f8285" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/linked_list/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d052271d014d27773e5ccca356a3af4a" class="toggle"  />
+    <label for="section-d052271d014d27773e5ccca356a3af4a" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/hash_table/" class="">Hash Table</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-180e33121504dfd35faadc57d07876f6" class="toggle"  />
+    <label for="section-180e33121504dfd35faadc57d07876f6" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/binary_tree/" class="">Binary Tree</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-77f118cf38ea1ace2e771bb9265b98f0" class="toggle"  />
+    <label for="section-77f118cf38ea1ace2e771bb9265b98f0" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/binary_tree/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c658f04e69b96e501e190fe16269f047" class="toggle"  />
+    <label for="section-c658f04e69b96e501e190fe16269f047" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/heap/" class="">Heap</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/stack/" class="">Stack</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="toggle"  />
+    <label for="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="flex justify-between">
+      <a role="button" class="">Machine Learning</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be9e9a6863a691ff246cc0ef6ba064c0" class="toggle"  />
+    <label for="section-be9e9a6863a691ff246cc0ef6ba064c0" class="flex justify-between">
+      <a role="button" class="">Datasets</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e48506722f290c30e510d4bb88018ead" class="toggle"  />
+    <label for="section-e48506722f290c30e510d4bb88018ead" class="flex justify-between">
+      <a href="/docs/ml/datasets/tiny_imagenet/" class="">Tiny ImageNet</a>
+    </label>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-21ae5bd001035865dd674b39a245d790" class="toggle"  />
+    <label for="section-21ae5bd001035865dd674b39a245d790" class="flex justify-between">
+      <a href="/docs/ml/checkpointing/" class="">Checkpointing</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ml/checkpointing/checkfreq/" class="">CheckFreq</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b9dd7809efc0de1493446eb73e9f9047" class="toggle" checked />
+    <label for="section-b9dd7809efc0de1493446eb73e9f9047" class="flex justify-between">
+      <a role="button" class="">Computer Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4817d0e206325b770adf43460e7fc477" class="toggle"  />
+    <label for="section-4817d0e206325b770adf43460e7fc477" class="flex justify-between">
+      <a href="/docs/systems/cross_cutting_issues/" class="">Cross Cutting Issues</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/alignment/" class="">Data Access Alignment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/device_driver/" class="">Device Driver</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be86044918f6ff386621aa88c154d6df" class="toggle" checked />
+    <label for="section-be86044918f6ff386621aa88c154d6df" class="flex justify-between">
+      <a role="button" class="">Operating Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/booting/" class="active">Booting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/cpu/" class="">CPU</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/io_path/" class="">I/O Path</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="toggle"  />
+    <label for="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="flex justify-between">
+      <a role="button" class="">Storage Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/cxl/" class="">Compute Express Link (CXL)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/dax/" class="">Direct Access (DAX)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/ssd_data_structures/" class="">SSD Data Structures</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-49e56af90e297b291fcbf9ec542e1e05" class="toggle"  />
+    <label for="section-49e56af90e297b291fcbf9ec542e1e05" class="flex justify-between">
+      <a role="button" class="">SQL</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Booting</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-do-computers-boot-up">How do computers boot up?</a></li>
+    <li><a href="#how-to-change-default-kernel-in-linux">How to change default kernel in Linux?</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="how-do-computers-boot-up">
+  How do computers boot up?
+  <a class="anchor" href="#how-do-computers-boot-up">#</a>
+</h2>
+<p>When we power up a computer, how does it know where to find an operating system? How does a computer identify that a particular program or executable file is an operating system and decide it will have the privilege to control the system? How does it know how to boot an entire operating system which may consist of more than a single executable file? How does an operating system take control of the system?</p>
+<blockquote class="book-hint info">
+  Amplification <br>
+Predefined address translation and file format <br>
+Hierarchical search paths <br>
+Privileged mode and interrupt vector
+</blockquote>
+
+<p><a href="https://www.cs.huji.ac.il/course/2010/os/notes/os-notes.pdf" target="_blank" >Dror G. Feitelson</a> described the main idea behind booting a system as amplification. It means that we start by executing a very short program that will load a bigger program, which can then load other longer programs. The immediate questions would be – How would we load the first short program? How short does it have to be? How would it know where to look for the subsequent program? What will happen if any of these were to be updated?</p>
+<p>The idea that solves the problem of loading the first executable is predefined address translation. We’ll always start executing instructions stored in a particular hardware (e.g., a non-volatile Read-Only Memory) at a predefined physical memory location (e.g., the first physical block of the primary storage device aka boot sector, when loading the boot loader), after we turn on a computer. But a single byte or a block definitely can’t store all information about how to load the entire executable, which can vary in size in different systems or even in different versions of the same system. Since a files system is yet to be initialized, how would the short program know how to load the next executable file correctly?</p>
+<p>The above problem can be solved simply by following a predefined file format, where a fixed number of bytes at the beginning will contain the information about the executable, followed by the entry point for the executable instructions. Let’s say, we use the first four bytes to provide information about the executable and the fifth byte contains the first instruction to be executed. We can then execute the instructions in sequence. In case of a computer, the first program (small enough to fit inside the computer’s ROM) can load a boot loader, that will start loading the actual operating system. The boot loader will use the same principles to look for the entry point of the operating system and load it, which will then load another system and the chain will be amplified until the operating systems and it’s services start. <a href="https://osblog.stephenmarz.com/ch1.html" target="_blank" >Stephen Marz</a> provides an hands-on example of how this is done on a RISC-V machine, for an operating system written in Rust.</p>
+<p>Another related idea is hierarchical search paths. What will happen if we have multiple candidates in any stage of the whole process? For example, if the first executable can search for the entry point in multiple storage devices, which one should it look for first and if there are multiple boot loaders present in the system, which one should it pick. The search path is also predefined, but by the user. In case of a computer, if a boot loader is found in the first path, then the search will end immediately. If the boot loader finds multiple operating systems in a computer, it usually let’s the user choose which one to boot.</p>
+<blockquote class="book-hint info">
+  How can we boot up the computer if the none of the above exist? In early computers, the first short program (i.e., the initial instructions – the opcodes and the arguments) were entered manually using switches of the computer, after turning it on.
+</blockquote>
+
+<p>The next big ideas are privileged mode and interrupt vector. The boot loader loads the kernel of the operating system in privileged mode(s) of the CPU (the exact name of the mode can be different in different instruction sets). It also loads the interrupt vector that contains all entry points to the operating system in a predefined memory location. Once the kernel of the operating system is loaded, it can be switch to user mode with lower privilege to load other services and programs. It should be noted that the privileged mode(s) and interrupt vectors are CPU features that let a program gain control of the system. Once a program (in this case the operating system kernel) loads the interrupt vector and switch to user mode, request for all privileged operations will be redirected to and executed by the operating system kernel and the latter can always regain control of the system from any program running on the system in user mode. If we want some other program to take control of the system during boot, then we need to overwrite or update the boot loader to point to the new program. If we want a program to override the operating system without rebooting, we would need to do so by finding a security vulnerability in the operating system code that’ll let us overwrite the interrupt vector to point to our preferred memory locations.</p>
+<blockquote class="book-hint info">
+  An operating system manages computer systems designed based on a specific abstract model of a computer. This abstract model includes an Instruction Set Architecture (ISA) that defines what the CPU can do and how to interact with the CPU. In other words, an operating system is written with a specific computer model or ISA in mind and how we initialize the operating system is dependent on the features of that computer model or ISA.
+</blockquote>
+
+<p>To summarize, upon turning on a device, we need to start executing instructions from a specific physical address and execute the instructions in sequence. The initial sets of instructions (i.e., the first program) loads a bigger program from another predefined address. All of these goes in a predefined hierarchical order  in the privileged mode of the CPU, until the operating system kernel is loaded. Once the operating system takes control of the CPU, it can then switch to less privileged user mode to start different services. <a href="https://blog.bytebytego.com/p/ep88-linux-boot-process-explained" target="_blank" >ByteByteGo</a> has a nice article describing how Linux operating system boots in a single boot system. For more information about privileged and user mode for RISC-V once can take a look at <a href="https://github.com/riscv/riscv-isa-manual" target="_blank" >RISC-V ISA manual</a>. Intel CPUs have multiple privilege modes and complicated privilege switching mechanism due to backward compatibility.</p>
+<p>Do other devices (e.g., SSD, GPU, or any complex electronic device) use to same techniques to initialize their internal software (i.e., firmware, operating system or whatever it is)? While booting up the firmware of any hardware inside a computer (e.g., SSD, GPU, network adapter, even the CPU) is simpler, some of above ideas apply. However, most firmware inside these devices may not need to implement complicated interrupt-based privilege escalation/de-escalation similar to the operating system. It is worth investigating whether or not this is true for computational SSDs that can run compute inside the storage device.</p>
+<h2 id="how-to-change-default-kernel-in-linux">
+  How to change default kernel in Linux?
+  <a class="anchor" href="#how-to-change-default-kernel-in-linux">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get the index of the kernel</span>
+</span></span><span style="display:flex;"><span>$ sudo grubby --info<span style="color:#f92672">=</span>ALL 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Change value of GRUB_DEFAULT with correct index</span>
+</span></span><span style="display:flex;"><span>$ sudo nano /etc/default/grub
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Update grub and reboot </span>
+</span></span><span style="display:flex;"><span>$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg <span style="color:#75715e"># CentOS</span>
+</span></span><span style="display:flex;"><span>$ sudo update-grub <span style="color:#75715e"># Ubuntu</span>
+</span></span><span style="display:flex;"><span>$ sudo reboot
+</span></span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-do-computers-boot-up">How do computers boot up?</a></li>
+    <li><a href="#how-to-change-default-kernel-in-linux">How to change default kernel in Linux?</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

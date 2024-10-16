@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Implementing CheckFreq&rsquo;s asynchronous ML checkpointing in Darknet
+  #
+
+I have recently implemented CheckFreq, an asynchronous checkpointing library for Deep Neural Networks (DNN), on top of Darknet, an open source neural network framework written in C and CUDA. Below are some high-level details about the implementation and one important lesson about CUDA concurrency.
+Darknet handles model checkpointing synchronously, where a checkpoint can only start after the weight update completes in an iteration and the next iteration does not start until the checkpoint operation completes. In contrast, CheckFreq proposes an two-stage asynchronous checkpointing method where the checkpoint operation executes in the background and only the weight update operation of the next iteration has to wait until the first stage (i.e., the snapshot operation that copies the model state in new memory pages in GPU or CPU) completes. This wait is called the snapshot stall. The second stage (i.e., the persist stage that writes the model state in GPU or CPu memory to files in persistent storage) can execute in the background without blocking any other operation. Implementing this correctly in Darknet involved three things.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/ml/checkpointing/checkfreq/">
+  <meta property="og:site_name" content="Hoyto ...">
+  <meta property="og:title" content="CheckFreq">
+  <meta property="og:description" content=" Implementing CheckFreq’s asynchronous ML checkpointing in Darknet # I have recently implemented CheckFreq, an asynchronous checkpointing library for Deep Neural Networks (DNN), on top of Darknet, an open source neural network framework written in C and CUDA. Below are some high-level details about the implementation and one important lesson about CUDA concurrency.
+Darknet handles model checkpointing synchronously, where a checkpoint can only start after the weight update completes in an iteration and the next iteration does not start until the checkpoint operation completes. In contrast, CheckFreq proposes an two-stage asynchronous checkpointing method where the checkpoint operation executes in the background and only the weight update operation of the next iteration has to wait until the first stage (i.e., the snapshot operation that copies the model state in new memory pages in GPU or CPU) completes. This wait is called the snapshot stall. The second stage (i.e., the persist stage that writes the model state in GPU or CPu memory to files in persistent storage) can execute in the background without blocking any other operation. Implementing this correctly in Darknet involved three things.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+<title>CheckFreq | Hoyto ...</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.b67cae1a43d6e1fb8db85deb339bc71264f1e6f14aaf15a557167e37246e7346.css" integrity="sha256-tnyuGkPW4fuNuF3rM5vHEmTx5vFKrxWlVxZ&#43;NyRuc0Y=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.f80647a877d60626cc8e69beea1e83337dae78043365e56abcbecfa64644d87d.js" integrity="sha256-&#43;AZHqHfWBibMjmm&#43;6h6DM32ueAQzZeVqvL7PpkZE2H0=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Hoyto ...</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-27ea0c642ea54e6cd5149afc21584915" class="toggle"  />
+    <label for="section-27ea0c642ea54e6cd5149afc21584915" class="flex justify-between">
+      <a role="button" class="">Data Structures &amp; Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72131ba8b64056ec0e5941e65dbf0e77" class="toggle"  />
+    <label for="section-72131ba8b64056ec0e5941e65dbf0e77" class="flex justify-between">
+      <a role="button" class="">Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/algorithm/sorting/" class="">Sorting</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3ca14029faf98cc80f3ba74dae51eb1c" class="toggle"  />
+    <label for="section-3ca14029faf98cc80f3ba74dae51eb1c" class="flex justify-between">
+      <a role="button" class="">Data Structures</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-47d68c54e7e4e58d80db1292f493ca73" class="toggle"  />
+    <label for="section-47d68c54e7e4e58d80db1292f493ca73" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/linked_list/" class="">Linked List</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/linked_list/update/" class="">Update</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-74f1dbafb27b15c7d5e250d7096f8285" class="toggle"  />
+    <label for="section-74f1dbafb27b15c7d5e250d7096f8285" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/linked_list/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d052271d014d27773e5ccca356a3af4a" class="toggle"  />
+    <label for="section-d052271d014d27773e5ccca356a3af4a" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/hash_table/" class="">Hash Table</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-180e33121504dfd35faadc57d07876f6" class="toggle"  />
+    <label for="section-180e33121504dfd35faadc57d07876f6" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/binary_tree/" class="">Binary Tree</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/binary_tree/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-77f118cf38ea1ace2e771bb9265b98f0" class="toggle"  />
+    <label for="section-77f118cf38ea1ace2e771bb9265b98f0" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/binary_tree/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c658f04e69b96e501e190fe16269f047" class="toggle"  />
+    <label for="section-c658f04e69b96e501e190fe16269f047" class="flex justify-between">
+      <a href="/docs/dsa/data_structure/heap/" class="">Heap</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/data_structure/stack/" class="">Stack</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="toggle" checked />
+    <label for="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="flex justify-between">
+      <a role="button" class="">Machine Learning</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be9e9a6863a691ff246cc0ef6ba064c0" class="toggle"  />
+    <label for="section-be9e9a6863a691ff246cc0ef6ba064c0" class="flex justify-between">
+      <a role="button" class="">Datasets</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e48506722f290c30e510d4bb88018ead" class="toggle"  />
+    <label for="section-e48506722f290c30e510d4bb88018ead" class="flex justify-between">
+      <a href="/docs/ml/datasets/tiny_imagenet/" class="">Tiny ImageNet</a>
+    </label>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-21ae5bd001035865dd674b39a245d790" class="toggle" checked />
+    <label for="section-21ae5bd001035865dd674b39a245d790" class="flex justify-between">
+      <a href="/docs/ml/checkpointing/" class="">Checkpointing</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ml/checkpointing/checkfreq/" class="active">CheckFreq</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b9dd7809efc0de1493446eb73e9f9047" class="toggle"  />
+    <label for="section-b9dd7809efc0de1493446eb73e9f9047" class="flex justify-between">
+      <a role="button" class="">Computer Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4817d0e206325b770adf43460e7fc477" class="toggle"  />
+    <label for="section-4817d0e206325b770adf43460e7fc477" class="flex justify-between">
+      <a href="/docs/systems/cross_cutting_issues/" class="">Cross Cutting Issues</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/alignment/" class="">Data Access Alignment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/device_driver/" class="">Device Driver</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be86044918f6ff386621aa88c154d6df" class="toggle"  />
+    <label for="section-be86044918f6ff386621aa88c154d6df" class="flex justify-between">
+      <a role="button" class="">Operating Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/booting/" class="">Booting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/cpu/" class="">CPU</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/io_path/" class="">I/O Path</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="toggle"  />
+    <label for="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="flex justify-between">
+      <a role="button" class="">Storage Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/cxl/" class="">Compute Express Link (CXL)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/dax/" class="">Direct Access (DAX)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/ssd_data_structures/" class="">SSD Data Structures</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-49e56af90e297b291fcbf9ec542e1e05" class="toggle"  />
+    <label for="section-49e56af90e297b291fcbf9ec542e1e05" class="flex justify-between">
+      <a role="button" class="">SQL</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>CheckFreq</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#implementing-checkfreqs-asynchronous-ml-checkpointing-in-darknet">Implementing CheckFreq&rsquo;s asynchronous ML checkpointing in Darknet</a></li>
+    <li><a href="#building-checkfreq-docker-image">Building CheckFreq Docker image</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="implementing-checkfreqs-asynchronous-ml-checkpointing-in-darknet">
+  Implementing CheckFreq&rsquo;s asynchronous ML checkpointing in Darknet
+  <a class="anchor" href="#implementing-checkfreqs-asynchronous-ml-checkpointing-in-darknet">#</a>
+</h2>
+<p>I have recently implemented <a href="https://www.usenix.org/conference/fast21/presentation/mohan" target="_blank" >CheckFreq</a>, an asynchronous checkpointing library for Deep Neural Networks (DNN), on top of <a href="https://github.com/AlexeyAB/darknet" target="_blank" >Darknet</a>, an open source neural network framework written in C and CUDA. Below are some high-level details about the implementation and one important lesson about CUDA concurrency.</p>
+<p>Darknet handles model checkpointing synchronously, where a checkpoint can only start after the weight update completes in an iteration and the next iteration does not start until the checkpoint operation completes. In contrast, CheckFreq proposes an two-stage asynchronous checkpointing method where the checkpoint operation executes in the background and only the weight update operation of the next iteration has to wait until the first stage (i.e., the snapshot operation that copies the model state in new memory pages in GPU or CPU) completes. This wait is called the snapshot stall. The second stage (i.e., the persist stage that writes the model state in GPU or CPu memory to files in persistent storage) can execute in the background without blocking any other operation. Implementing this correctly in Darknet involved three things.</p>
+<blockquote class="book-hint info">
+  <blockquote>
+<p>Background threads <br>
+Thread synchronization using conditional variables <br>
+CUDA streams for concurrency</p>
+</blockquote>
+</blockquote>
+
+<p>I created two threads – one for training and one for checkpointing – from the main() function in Darknet. I used a global variable keeps track of checkpoint state and two conditional variables for synchronizing the training and checkpointing threads – one for signalling weight update has finished and a new checkpoint can be triggered and another for signalling snapshot has completed and the weight update can start. Implementing the synchronization between two threads needed some effort due to multiple bugs related to checkpoint state and memory access. Once the bugs are rooted out, I saw that the overall iteration time with and without snapshot stalls are as expected.</p>
+<p>However, what was really challenging was to figure out a CUDA concurrency issue that was stalling the wrong operation in the training thread. The timing information of each operation inside an iteration – data loading time, forward-backward pass, weight update, and snapshot stall – showed that weight updates were not stalling while a snapshot operation was ongoing. Instead, it is the forward-backward pass operation that was stalling. The issue stems from the use of a single CUDA stream for data transfer in each GPU in Darknet. Since the snapshot operation, training data loader and the forward-backward pass uses the same stream for data transfer, data for the next iteration doesn’t complete the host to device transfer of input training data until the snapshot operation finishes its device to host data transfer of model state. Once I identified this issue, the solution was simple enough – use separate CUDA streams to enable concurrent data transfers for two independent operations – snapshot and data loader.</p>
+<p>I’ll put the code online some time in future.</p>
+<h2 id="building-checkfreq-docker-image">
+  Building CheckFreq Docker image
+  <a class="anchor" href="#building-checkfreq-docker-image">#</a>
+</h2>
+<ol start="0">
+<li>Use CC-Ubuntu20.04-CUDA-20230831.1 image in Chameleon Cloud.</li>
+<li>Install Docker and Nvidia Container Toolkit.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># https://docs.docker.com/engine/install/ubuntu/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add Docker&#39;s official GPG key:</span>
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install ca-certificates curl
+</span></span><span style="display:flex;"><span>sudo install -m <span style="color:#ae81ff">0755</span> -d /etc/apt/keyrings
+</span></span><span style="display:flex;"><span>sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+</span></span><span style="display:flex;"><span>sudo chmod a+r /etc/apt/keyrings/docker.asc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add the repository to Apt sources:</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;deb [arch=</span><span style="color:#66d9ef">$(</span>dpkg --print-architecture<span style="color:#66d9ef">)</span><span style="color:#e6db74"> signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  </span><span style="color:#66d9ef">$(</span>. /etc/os-release <span style="color:#f92672">&amp;&amp;</span> echo <span style="color:#e6db74">&#34;</span>$VERSION_CODENAME<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74"> stable&#34;</span> | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install the latest version</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># To use docker command without sudo. Logout and log back in after executing the following command.</span>
+</span></span><span style="display:flex;"><span>sudo usermod -aG docker <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install Nvidia Docker Toolkit</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install -y nvidia-container-toolkit
+</span></span></code></pre></div><ol start="2">
+<li>Pull Dokcer image nvcr.io/nvidia/pytorch:19.05-py3.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker pull nvcr.io/nvidia/pytorch:19.05-py3
+</span></span></code></pre></div><ol start="3">
+<li>Pull <a href="https://github.com/msr-fiddle/DS-Analyzer" target="_blank" >DS-Analyzer</a>(optional), <a href="https://github.com/msr-fiddle/CoorDL" target="_blank" >CoorDL</a> and <a href="https://github.com/msr-fiddle/CheckFreq" target="_blank" >CheckFreq</a> repositories. Copy patch for resumable iterator from CheckFreq repo to CoorDL repo. Apply the patch.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone git@github.com:msr-fiddle/DS-Analyzer.git
+</span></span><span style="display:flex;"><span>git clone --recursive https://github.com/msr-fiddle/CoorDL
+</span></span><span style="display:flex;"><span>git clone git@github.com:msr-fiddle/CheckFreq.git
+</span></span><span style="display:flex;"><span>cp CheckFreq/dl_patch/resumable_iterator.patch CoorDL/
+</span></span><span style="display:flex;"><span>cd CoorDL
+</span></span><span style="display:flex;"><span>git apply resumable_iterator.patch
+</span></span></code></pre></div><ol start="4">
+<li>Update Dockerfile named Docker_run_cuda in CoorDL repo. Comment line 34. Add hdparm in the install list.</li>
+<li>Update docker/build.sh in CoorDL repo. Update CUDA_IMAGE_NAME in line 200.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export CUDA_IMAGE_NAME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nvcr.io/nvidia/pytorch:19.05-py3&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#export CUDA_IMAGE_NAME=&#34;nvcr.io/nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04&#34;</span>
+</span></span></code></pre></div><ol start="6">
+<li>Build the docker image py36_cu10.run.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>CREATE_RUNNER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;YES&#34;</span> ./build.sh
+</span></span></code></pre></div><ol start="7">
+<li>Run the Docker image using the following command.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --gpus all --ipc<span style="color:#f92672">=</span>host --mount src<span style="color:#f92672">=</span>/,target<span style="color:#f92672">=</span>/datadrive/,type<span style="color:#f92672">=</span>bind -it --rm --network<span style="color:#f92672">=</span>host --privileged nvidia/dali:py36_cu10.run
+</span></span></code></pre></div><p>Useful commands:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># restart Docker </span>
+</span></span><span style="display:flex;"><span>sudo systemctl restart docker
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># View Docker images </span>
+</span></span><span style="display:flex;"><span>docker image ls
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Delete docker image by ID</span>
+</span></span><span style="display:flex;"><span>docker image rm &lt;IMAGE ID&gt;
+</span></span></code></pre></div><p>Some processes running on GPU may terminate inside the container but continue running on the host side. Use <code>sudo kill &lt;pid&gt;</code> to kill the process.</p>
+<p>Chameleon&rsquo;s Ubuntu image mentioned in step 0 can throw <code>Failed to initialize NVML: Driver/library version mismatch</code> error at some point. To prevent this from happening in Ubuntu, stop automatical update of NVIDIA drivers. Add the following in <code>sudo nano /etc/apt/apt.conf.d/50unattended-upgrades</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Unattended-Upgrade::Package-Blacklist <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;nvidia-&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;libnvidia-&#34;</span>;
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#implementing-checkfreqs-asynchronous-ml-checkpointing-in-darknet">Implementing CheckFreq&rsquo;s asynchronous ML checkpointing in Darknet</a></li>
+    <li><a href="#building-checkfreq-docker-image">Building CheckFreq Docker image</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

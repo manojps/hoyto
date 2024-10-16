@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cross Cutting Issues on Hoyto ...</title>
+    <link>http://localhost:1313/docs/systems/cross_cutting_issues/</link>
+    <description>Recent content in Cross Cutting Issues on Hoyto ...</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/docs/systems/cross_cutting_issues/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Data Access Alignment</title>
+      <link>http://localhost:1313/docs/systems/cross_cutting_issues/alignment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/systems/cross_cutting_issues/alignment/</guid>
+      <description>&lt;h1 id=&#34;are-data-accesses-in-computer-systems-byte-aligned-or-block-aligned&#34;&gt;&#xA;  Are data accesses in computer systems byte-aligned or block-aligned?&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#are-data-accesses-in-computer-systems-byte-aligned-or-block-aligned&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>Device Driver</title>
+      <link>http://localhost:1313/docs/systems/cross_cutting_issues/device_driver/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/systems/cross_cutting_issues/device_driver/</guid>
+      <description>&lt;h1 id=&#34;device-driver&#34;&gt;&#xA;  Device Driver&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#device-driver&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;does-os-needs-a-device-driver-to-communicate-with-cpu&#34;&gt;&#xA;  Does OS needs a device driver to communicate with CPU?&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#does-os-needs-a-device-driver-to-communicate-with-cpu&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;What about supporting advanced CPU features or instruction sets?&lt;/p&gt;&#xA;&lt;h2 id=&#34;do-dram-devices-need-drivers&#34;&gt;&#xA;  Do DRAM devices need drivers?&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#do-dram-devices-need-drivers&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;How come we do not need to install any new driver even if we install DRAM from unknown manufacturers? Are these drivers generic?&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-role-ioctl-plays-in-device-drivers&#34;&gt;&#xA;  What role IOCTL plays in device drivers?&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#what-role-ioctl-plays-in-device-drivers&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;</description>
+    </item>
+  </channel>
+</rss>

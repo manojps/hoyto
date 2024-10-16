@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Sorting
+  #
+
+
+  Comparison-based sorting 
+Stable sorting 
+In-place sorting
+
+
+
+  What is a stable sorting algorithm?
+  #
+
+Sorting algorithms that maintain the relative order of records with equal keys are called stable.
+Ref: Baeldung
+
+  Comparison Table
+  #
+
+
+  
+      
+          
+          Merge sort
+          Quick sort
+          Cyclic sort
+          Topological sort
+      
+  
+  
+      
+          Comparison-based
+          ✓
+          ✓
+          ✓
+          ✓
+      
+      
+          Stable
+          ✓
+          ✗
+          ✗
+          
+      
+      
+          In-place
+          ✗
+          
+          ✓
+          
+      
+      
+          Time complexity
+          nlog(n)
+          
+          O(n)
+          
+      
+      
+          Space complexity
+          O(n)
+          
+          O(1)
+          
+      
+      
+          Constraints
+          
+          
+          
+          
+      
+      
+          Applications
+          
+          
+          
+          
+      
+      
+          Comments
+          
+          
+          
+          
+      
+  
+
+
+  Cyclic Sort
+  #
+
+Cyclic sort is not stable.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/the-world-is-hybrid/algorithm/sorting/">
+  <meta property="og:site_name" content="Hoyto ...">
+  <meta property="og:title" content="Sorting">
+  <meta property="og:description" content=" Sorting # Comparison-based sorting Stable sorting In-place sorting What is a stable sorting algorithm? # Sorting algorithms that maintain the relative order of records with equal keys are called stable.
+Ref: Baeldung
+Comparison Table # Merge sort Quick sort Cyclic sort Topological sort Comparison-based ✓ ✓ ✓ ✓ Stable ✓ ✗ ✗ In-place ✗ ✓ Time complexity nlog(n) O(n) Space complexity O(n) O(1) Constraints Applications Comments Cyclic Sort # Cyclic sort is not stable.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+<title>Sorting | Hoyto ...</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.b67cae1a43d6e1fb8db85deb339bc71264f1e6f14aaf15a557167e37246e7346.css" integrity="sha256-tnyuGkPW4fuNuF3rM5vHEmTx5vFKrxWlVxZ&#43;NyRuc0Y=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.f80647a877d60626cc8e69beea1e83337dae78043365e56abcbecfa64644d87d.js" integrity="sha256-&#43;AZHqHfWBibMjmm&#43;6h6DM32ueAQzZeVqvL7PpkZE2H0=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Hoyto ...</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-437883f3d6c2df9be56e3356c0ed3fa3" class="toggle" checked />
+    <label for="section-437883f3d6c2df9be56e3356c0ed3fa3" class="flex justify-between">
+      <a role="button" class="">The World is Hybrid</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3c9d55d5180ce47c1906bc60327a2dcd" class="toggle" checked />
+    <label for="section-3c9d55d5180ce47c1906bc60327a2dcd" class="flex justify-between">
+      <a role="button" class="">Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/the-world-is-hybrid/algorithm/sorting/" class="active">Sorting</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9f18be3b2d38959988eea1c325712c0d" class="toggle"  />
+    <label for="section-9f18be3b2d38959988eea1c325712c0d" class="flex justify-between">
+      <a role="button" class="">Data Structures</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1864093688472136645c8fc7eca6d70e" class="toggle"  />
+    <label for="section-1864093688472136645c8fc7eca6d70e" class="flex justify-between">
+      <a href="/docs/the-world-is-hybrid/data_structure/linked_list/" class="">Linked List</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/the-world-is-hybrid/data_structure/linked_list/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/the-world-is-hybrid/data_structure/linked_list/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/the-world-is-hybrid/data_structure/linked_list/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/the-world-is-hybrid/data_structure/linked_list/update/" class="">Update</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ec89a6790997e5524d475a925f55848e" class="toggle"  />
+    <label for="section-ec89a6790997e5524d475a925f55848e" class="flex justify-between">
+      <a href="/docs/the-world-is-hybrid/data_structure/linked_list/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b44a2a9a54d6920c43773756bc95f2f7" class="toggle"  />
+    <label for="section-b44a2a9a54d6920c43773756bc95f2f7" class="flex justify-between">
+      <a href="/docs/the-world-is-hybrid/data_structure/hash_table/" class="">Hash Table</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4f67f40d411241c47adf11716915349b" class="toggle"  />
+    <label for="section-4f67f40d411241c47adf11716915349b" class="flex justify-between">
+      <a href="/docs/the-world-is-hybrid/data_structure/binary_tree/" class="">Binary Tree</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/the-world-is-hybrid/data_structure/binary_tree/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/the-world-is-hybrid/data_structure/binary_tree/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/the-world-is-hybrid/data_structure/binary_tree/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-33bbeefad7e5052b9cf9a357d33d427d" class="toggle"  />
+    <label for="section-33bbeefad7e5052b9cf9a357d33d427d" class="flex justify-between">
+      <a href="/docs/the-world-is-hybrid/data_structure/binary_tree/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1cb4756209c96678901fd07503563804" class="toggle"  />
+    <label for="section-1cb4756209c96678901fd07503563804" class="flex justify-between">
+      <a href="/docs/the-world-is-hybrid/data_structure/heap/" class="">Heap</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/the-world-is-hybrid/data_structure/stack/" class="">Stack</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="toggle"  />
+    <label for="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="flex justify-between">
+      <a role="button" class="">Machine Learning</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be9e9a6863a691ff246cc0ef6ba064c0" class="toggle"  />
+    <label for="section-be9e9a6863a691ff246cc0ef6ba064c0" class="flex justify-between">
+      <a role="button" class="">Datasets</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e48506722f290c30e510d4bb88018ead" class="toggle"  />
+    <label for="section-e48506722f290c30e510d4bb88018ead" class="flex justify-between">
+      <a href="/docs/ml/datasets/tiny_imagenet/" class="">Tiny ImageNet</a>
+    </label>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-21ae5bd001035865dd674b39a245d790" class="toggle"  />
+    <label for="section-21ae5bd001035865dd674b39a245d790" class="flex justify-between">
+      <a href="/docs/ml/checkpointing/" class="">Checkpointing</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ml/checkpointing/checkfreq/" class="">CheckFreq</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b9dd7809efc0de1493446eb73e9f9047" class="toggle"  />
+    <label for="section-b9dd7809efc0de1493446eb73e9f9047" class="flex justify-between">
+      <a role="button" class="">Computer Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4817d0e206325b770adf43460e7fc477" class="toggle"  />
+    <label for="section-4817d0e206325b770adf43460e7fc477" class="flex justify-between">
+      <a href="/docs/systems/cross_cutting_issues/" class="">Cross Cutting Issues</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/alignment/" class="">Data Access Alignment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/device_driver/" class="">Device Driver</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be86044918f6ff386621aa88c154d6df" class="toggle"  />
+    <label for="section-be86044918f6ff386621aa88c154d6df" class="flex justify-between">
+      <a role="button" class="">Operating Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/booting/" class="">Booting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/cpu/" class="">CPU</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/io_path/" class="">I/O Path</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="toggle"  />
+    <label for="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="flex justify-between">
+      <a role="button" class="">Storage Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/cxl/" class="">Compute Express Link (CXL)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/dax/" class="">Direct Access (DAX)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/ssd_data_structures/" class="">SSD Data Structures</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-49e56af90e297b291fcbf9ec542e1e05" class="toggle"  />
+    <label for="section-49e56af90e297b291fcbf9ec542e1e05" class="flex justify-between">
+      <a role="button" class="">SQL</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Sorting</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-stable-sorting-algorithm">What is a stable sorting algorithm?</a></li>
+    <li><a href="#comparison-table">Comparison Table</a></li>
+    <li><a href="#cyclic-sort">Cyclic Sort</a></li>
+    <li><a href="#problems">Problems</a>
+      <ul>
+        <li><a href="#how-to-make-a-non-stable-sort-into-a-stable-sort">How to make a non-stable sort into a stable sort?</a></li>
+        <li><a href="#how-to-make-an-in-place-sort-into-an-in-place-sort">How to make an in-place sort into an in-place sort?</a></li>
+        <li><a href="#how-does-each-of-the-above-sorting-algorithm-behave-with-duplicate-elements">How does each of the above sorting algorithm behave with duplicate elements?</a></li>
+        <li><a href="#implement-a-non-comparison-sorting-algorithm">Implement a non-comparison sorting algorithm</a></li>
+        <li><a href="#merge-k-sorted-arrays">Merge k-sorted arrays</a></li>
+        <li><a href="#sorting-lists">Sorting lists</a></li>
+        <li><a href="#sorting-with-duplicates">Sorting with duplicates</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="sorting">
+  Sorting
+  <a class="anchor" href="#sorting">#</a>
+</h1>
+<blockquote class="book-hint info">
+  Comparison-based sorting <br>
+Stable sorting <br>
+In-place sorting
+</blockquote>
+
+<h2 id="what-is-a-stable-sorting-algorithm">
+  What is a stable sorting algorithm?
+  <a class="anchor" href="#what-is-a-stable-sorting-algorithm">#</a>
+</h2>
+<p>Sorting algorithms that maintain the relative order of records with equal keys are called stable.</p>
+<p>Ref: <a href="https://www.baeldung.com/cs/stable-sorting-algorithms" target="_blank" >Baeldung</a></p>
+<h2 id="comparison-table">
+  Comparison Table
+  <a class="anchor" href="#comparison-table">#</a>
+</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left">Merge sort</th>
+          <th style="text-align: left">Quick sort</th>
+          <th style="text-align: left">Cyclic sort</th>
+          <th style="text-align: left">Topological sort</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Comparison-based</td>
+          <td style="text-align: left">✓</td>
+          <td style="text-align: left">✓</td>
+          <td style="text-align: left">✓</td>
+          <td style="text-align: left">✓</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Stable</td>
+          <td style="text-align: left">✓</td>
+          <td style="text-align: left">✗</td>
+          <td style="text-align: left">✗</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">In-place</td>
+          <td style="text-align: left">✗</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">✓</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Time complexity</td>
+          <td style="text-align: left">nlog(n)</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">O(n)</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Space complexity</td>
+          <td style="text-align: left">O(n)</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">O(1)</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Constraints</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Applications</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Comments</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="cyclic-sort">
+  Cyclic Sort
+  <a class="anchor" href="#cyclic-sort">#</a>
+</h2>
+<p>Cyclic sort is not stable.</p>
+<p>Why is it called cyclic?
+Because this sorting technique can only be applied on cycles within an array or list. Cycles are nothing but subsequences of unsorted elements. A cycle occurs when there is an element in the array/list out-of-place, and moving the element to its correct position in the array/list moves another element to the former element&rsquo;s place, forming a cycle.</p>
+<p>Where should we use cyclic sort?</p>
+<p>Can we use cyclic sort where the elements are not consecutive numbers (e.g., 1-n)? Can we use if the elements are not in a subsequence?
+Cyclic sort can be used to sort elements in a subsequence. In case of integer arrays, it is not encessary that the elements in a subsequence are consecutive integers (e.g., 1,2,3,4). As long as the integers in a subsequence form a series it can sorted using cyclic sort (e.g., 2, 4, 6)</p>
+<p>What is a subsequence? Is it different from a cycle?</p>
+<h2 id="problems">
+  Problems
+  <a class="anchor" href="#problems">#</a>
+</h2>
+<h3 id="how-to-make-a-non-stable-sort-into-a-stable-sort">
+  How to make a non-stable sort into a stable sort?
+  <a class="anchor" href="#how-to-make-a-non-stable-sort-into-a-stable-sort">#</a>
+</h3>
+<h3 id="how-to-make-an-in-place-sort-into-an-in-place-sort">
+  How to make an in-place sort into an in-place sort?
+  <a class="anchor" href="#how-to-make-an-in-place-sort-into-an-in-place-sort">#</a>
+</h3>
+<h3 id="how-does-each-of-the-above-sorting-algorithm-behave-with-duplicate-elements">
+  How does each of the above sorting algorithm behave with duplicate elements?
+  <a class="anchor" href="#how-does-each-of-the-above-sorting-algorithm-behave-with-duplicate-elements">#</a>
+</h3>
+<h3 id="implement-a-non-comparison-sorting-algorithm">
+  Implement a non-comparison sorting algorithm
+  <a class="anchor" href="#implement-a-non-comparison-sorting-algorithm">#</a>
+</h3>
+<h3 id="merge-k-sorted-arrays">
+  Merge k-sorted arrays
+  <a class="anchor" href="#merge-k-sorted-arrays">#</a>
+</h3>
+<p>(a) Out-of-place (i.e., when new memory allocations are allowed)</p>
+<p>(b) In-place (i.e., when one array is large enough to hold all arrays and has empty slots)</p>
+<p>(c) Compute intersection of k-sorted arrays</p>
+<p>Can we use the same solutions for the above problems if the data structure is list, instead of array?</p>
+<h3 id="sorting-lists">
+  Sorting lists
+  <a class="anchor" href="#sorting-lists">#</a>
+</h3>
+<p>(a) Implement a fast sorting algorithm for lists</p>
+<h3 id="sorting-with-duplicates">
+  Sorting with duplicates
+  <a class="anchor" href="#sorting-with-duplicates">#</a>
+</h3>
+<p>(a) Sort array with duplicate values</p>
+<p>(b) Remove first-name duplicates</p>
+<p>(c) Partitioning and sorting an array with repeated entries</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-stable-sorting-algorithm">What is a stable sorting algorithm?</a></li>
+    <li><a href="#comparison-table">Comparison Table</a></li>
+    <li><a href="#cyclic-sort">Cyclic Sort</a></li>
+    <li><a href="#problems">Problems</a>
+      <ul>
+        <li><a href="#how-to-make-a-non-stable-sort-into-a-stable-sort">How to make a non-stable sort into a stable sort?</a></li>
+        <li><a href="#how-to-make-an-in-place-sort-into-an-in-place-sort">How to make an in-place sort into an in-place sort?</a></li>
+        <li><a href="#how-does-each-of-the-above-sorting-algorithm-behave-with-duplicate-elements">How does each of the above sorting algorithm behave with duplicate elements?</a></li>
+        <li><a href="#implement-a-non-comparison-sorting-algorithm">Implement a non-comparison sorting algorithm</a></li>
+        <li><a href="#merge-k-sorted-arrays">Merge k-sorted arrays</a></li>
+        <li><a href="#sorting-lists">Sorting lists</a></li>
+        <li><a href="#sorting-with-duplicates">Sorting with duplicates</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

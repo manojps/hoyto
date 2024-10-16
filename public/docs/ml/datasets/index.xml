@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hoyto ...</title>
+    <link>http://localhost:1313/docs/ml/datasets/</link>
+    <description>Recent content on Hoyto ...</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/docs/ml/datasets/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tiny ImageNet</title>
+      <link>http://localhost:1313/docs/ml/datasets/tiny_imagenet/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/ml/datasets/tiny_imagenet/</guid>
+      <description>&lt;h1 id=&#34;tiny-imagenet&#34;&gt;&#xA;  Tiny ImageNet&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#tiny-imagenet&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Can be used as a substitute of &lt;a href=&#34;https://www.image-net.org/&#34; target=&#34;_blank&#34; &gt;ImageNet&lt;/a&gt; dataset. It has 200 classes with image sizes of 64x64 pixels. Test set is not labeled. Validation set needs to be used as test set. Validation set needs some preprocessing before it can be used for evaluating the model. Directly passing the images to application will result in incorrect validation/test accuracy.&lt;/p&gt;&#xA;&lt;h2 id=&#34;download-dataset&#34;&gt;&#xA;  Download dataset&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#download-dataset&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;wget http://cs231n.stanford.edu/tiny-imagenet-200.zip&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;create-dataloader&#34;&gt;&#xA;  Create Dataloader&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#create-dataloader&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;There are two ways to create data loaders for Tiny ImageNet. One is using &lt;code&gt;torchvision.datasets.ImageFolder&lt;/code&gt; and the other is through Python dictionary.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Traverse Binary Tree
+  #
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+    def visit(self):
+        print(self.val)
+
+  BFS traversal
+  #
+
+
+  Level-order traversal
+  #
+
+
+  DFS traversal
+  #
+
+DFS traversal of a binary tree can be used to solve the following problems.
+
+  Maximum width, minimum depth and diameter of a binary tree 
+Binary tree iterator 
+Convert a binary tree into a mirror tree 
+Find k smallest/largest elements of a binary search tree 
+Boundary traversal of binary tree 
+Lowest common ancestor of two nodes in a binary tree 
+Construct a binary tree from pre-order and in-order traversal
+
+
+
+  Pre-order traversal
+  #
+
+Parent -&gt; Left child -&gt; Right child">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/dsa/binary_tree/traverse/">
+  <meta property="og:site_name" content="Notes on Computer Systems and Machine Learning">
+  <meta property="og:title" content="Notes on Computer Systems and Machine Learning">
+  <meta property="og:description" content=" Traverse Binary Tree # class TreeNode: def __init__(self, val): self.val = val self.left = None self.right = None def visit(self): print(self.val) BFS traversal # Level-order traversal # DFS traversal # DFS traversal of a binary tree can be used to solve the following problems.
+Maximum width, minimum depth and diameter of a binary tree Binary tree iterator Convert a binary tree into a mirror tree Find k smallest/largest elements of a binary search tree Boundary traversal of binary tree Lowest common ancestor of two nodes in a binary tree Construct a binary tree from pre-order and in-order traversal Pre-order traversal # Parent -&gt; Left child -&gt; Right child">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+<title>Traverse | Notes on Computer Systems and Machine Learning</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.b67cae1a43d6e1fb8db85deb339bc71264f1e6f14aaf15a557167e37246e7346.css" integrity="sha256-tnyuGkPW4fuNuF3rM5vHEmTx5vFKrxWlVxZ&#43;NyRuc0Y=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.ce685b65cf08276fe25a6463b275ff78a68a0178b64e33e7039444bd1ce4a55a.js" integrity="sha256-zmhbZc8IJ2/iWmRjsnX/eKaKAXi2TjPnA5REvRzkpVo=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Notes on Computer Systems and Machine Learning</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-27ea0c642ea54e6cd5149afc21584915" class="toggle" checked />
+    <label for="section-27ea0c642ea54e6cd5149afc21584915" class="flex justify-between">
+      <a role="button" class="">Data Structures &amp; Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6f4081a7cb9131b0d47c5f136f2c5105" class="toggle"  />
+    <label for="section-6f4081a7cb9131b0d47c5f136f2c5105" class="flex justify-between">
+      <a href="/docs/dsa/linked_list/" class="">Linked List</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/update/" class="">Update</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1b992a7cb8e6593a23519c02e7c4aecf" class="toggle"  />
+    <label for="section-1b992a7cb8e6593a23519c02e7c4aecf" class="flex justify-between">
+      <a href="/docs/dsa/linked_list/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-394b432cc006919ea6f4656f014608bc" class="toggle"  />
+    <label for="section-394b432cc006919ea6f4656f014608bc" class="flex justify-between">
+      <a href="/docs/dsa/hash_table/" class="">Hash Table</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c0398d0147306bfe4962d344a8d68986" class="toggle" checked />
+    <label for="section-c0398d0147306bfe4962d344a8d68986" class="flex justify-between">
+      <a href="/docs/dsa/binary_tree/" class="">Binary Tree</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/binary_tree/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/binary_tree/traverse/" class="active">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/binary_tree/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e10672471bd65474e94ae6cb87a61274" class="toggle"  />
+    <label for="section-e10672471bd65474e94ae6cb87a61274" class="flex justify-between">
+      <a href="/docs/dsa/binary_tree/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-af5bb7130334c204fb9a90ff4deae9ce" class="toggle"  />
+    <label for="section-af5bb7130334c204fb9a90ff4deae9ce" class="flex justify-between">
+      <a href="/docs/dsa/heap/" class="">Heap</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/stack/" class="">Stack</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="toggle"  />
+    <label for="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="flex justify-between">
+      <a role="button" class="">Machine Learning</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be9e9a6863a691ff246cc0ef6ba064c0" class="toggle"  />
+    <label for="section-be9e9a6863a691ff246cc0ef6ba064c0" class="flex justify-between">
+      <a role="button" class="">Datasets</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e48506722f290c30e510d4bb88018ead" class="toggle"  />
+    <label for="section-e48506722f290c30e510d4bb88018ead" class="flex justify-between">
+      <a href="/docs/ml/datasets/tiny_imagenet/" class="">Tiny ImageNet</a>
+    </label>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-21ae5bd001035865dd674b39a245d790" class="toggle"  />
+    <label for="section-21ae5bd001035865dd674b39a245d790" class="flex justify-between">
+      <a href="/docs/ml/checkpointing/" class="">Checkpointing</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ml/checkpointing/checkfreq/" class="">CheckFreq</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b9dd7809efc0de1493446eb73e9f9047" class="toggle"  />
+    <label for="section-b9dd7809efc0de1493446eb73e9f9047" class="flex justify-between">
+      <a role="button" class="">Computer Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4817d0e206325b770adf43460e7fc477" class="toggle"  />
+    <label for="section-4817d0e206325b770adf43460e7fc477" class="flex justify-between">
+      <a href="/docs/systems/cross_cutting_issues/" class="">Cross Cutting Issues</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/alignment/" class="">Data Access Alignment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/device_driver/" class="">Device Driver</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be86044918f6ff386621aa88c154d6df" class="toggle"  />
+    <label for="section-be86044918f6ff386621aa88c154d6df" class="flex justify-between">
+      <a role="button" class="">Operating Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/booting/" class="">Booting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/cpu/" class="">CPU</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/io_path/" class="">I/O Path</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="toggle"  />
+    <label for="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="flex justify-between">
+      <a role="button" class="">Storage Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/cxl/" class="">Compute Express Link (CXL)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/dax/" class="">Direct Access (DAX)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/ssd_data_structures/" class="">SSD Data Structures</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-49e56af90e297b291fcbf9ec542e1e05" class="toggle"  />
+    <label for="section-49e56af90e297b291fcbf9ec542e1e05" class="flex justify-between">
+      <a role="button" class="">SQL</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Traverse</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#bfs-traversal">BFS traversal</a>
+      <ul>
+        <li><a href="#level-order-traversal">Level-order traversal</a></li>
+      </ul>
+    </li>
+    <li><a href="#dfs-traversal">DFS traversal</a>
+      <ul>
+        <li><a href="#pre-order-traversal">Pre-order traversal</a></li>
+        <li><a href="#reverse-pre-order-traversal">Reverse pre-order traversal</a></li>
+        <li><a href="#in-order-traversal">In-order traversal</a></li>
+        <li><a href="#reverse-in-order-traversal">Reverse in-order traversal</a></li>
+        <li><a href="#post-order-traversal">Post-order traversal</a></li>
+        <li><a href="#reverse-post-order-traversal">Reverse post-order traversal</a></li>
+        <li><a href="#test-code">Test Code</a></li>
+        <li><a href="#resources">Resources</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="traverse-binary-tree">
+  Traverse Binary Tree
+  <a class="anchor" href="#traverse-binary-tree">#</a>
+</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TreeNode</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, val):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>val <span style="color:#f92672">=</span> val
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">visit</span>(self):
+</span></span><span style="display:flex;"><span>        print(self<span style="color:#f92672">.</span>val)
+</span></span></code></pre></div><h2 id="bfs-traversal">
+  BFS traversal
+  <a class="anchor" href="#bfs-traversal">#</a>
+</h2>
+<h3 id="level-order-traversal">
+  Level-order traversal
+  <a class="anchor" href="#level-order-traversal">#</a>
+</h3>
+<h2 id="dfs-traversal">
+  DFS traversal
+  <a class="anchor" href="#dfs-traversal">#</a>
+</h2>
+<p>DFS traversal of a binary tree can be used to solve the following problems.</p>
+<blockquote class="book-hint info">
+  Maximum width, minimum depth and diameter of a binary tree <br>
+Binary tree iterator <br>
+Convert a binary tree into a mirror tree <br>
+Find k smallest/largest elements of a binary search tree <br>
+Boundary traversal of binary tree <br>
+Lowest common ancestor of two nodes in a binary tree <br>
+Construct a binary tree from pre-order and in-order traversal
+</blockquote>
+
+<h3 id="pre-order-traversal">
+  Pre-order traversal
+  <a class="anchor" href="#pre-order-traversal">#</a>
+</h3>
+<p>Parent -&gt; Left child -&gt; Right child</p>
+<p>Can be used to create a copy of the tree.</p>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-preorder_traversal" id="tabs-preorder_traversal-0" checked="checked" />
+  <label for="tabs-preorder_traversal-0">Recursive</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">preorder_recursive</span>(node):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>    node<span style="color:#f92672">.</span>visit()
+</span></span><span style="display:flex;"><span>    preorder_recursive(node<span style="color:#f92672">.</span>left)
+</span></span><span style="display:flex;"><span>    preorder_recursive(node<span style="color:#f92672">.</span>right)
+</span></span></code></pre></div></div><input type="radio" class="toggle" name="tabs-preorder_traversal" id="tabs-preorder_traversal-1"  />
+  <label for="tabs-preorder_traversal-1">Iterative</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Since parents are visited prior to children, we can push to and pop from stack</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># in a loop as we go. The right child needs to pushed before left child so that</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># left child is popped first.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">preorder_iterative</span>(node):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> 
+</span></span><span style="display:flex;"><span>    stack <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    stack<span style="color:#f92672">.</span>append(node)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> stack:
+</span></span><span style="display:flex;"><span>        node <span style="color:#f92672">=</span> stack<span style="color:#f92672">.</span>pop()
+</span></span><span style="display:flex;"><span>        node<span style="color:#f92672">.</span>visit()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> node<span style="color:#f92672">.</span>right:
+</span></span><span style="display:flex;"><span>            stack<span style="color:#f92672">.</span>append(node<span style="color:#f92672">.</span>right)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> node<span style="color:#f92672">.</span>left:
+</span></span><span style="display:flex;"><span>            stack<span style="color:#f92672">.</span>append(node<span style="color:#f92672">.</span>left)
+</span></span></code></pre></div></div></div>
+
+<h3 id="reverse-pre-order-traversal">
+  Reverse pre-order traversal
+  <a class="anchor" href="#reverse-pre-order-traversal">#</a>
+</h3>
+<p>Parent -&gt; Right child -&gt; Left child</p>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-reverse_preorder_traversal" id="tabs-reverse_preorder_traversal-0" checked="checked" />
+  <label for="tabs-reverse_preorder_traversal-0">Recursive</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse_preorder_recursive</span>(node):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>    node<span style="color:#f92672">.</span>visit()
+</span></span><span style="display:flex;"><span>    reverse_preorder_recursive(node<span style="color:#f92672">.</span>right)
+</span></span><span style="display:flex;"><span>    reverse_preorder_recursive(node<span style="color:#f92672">.</span>left)
+</span></span></code></pre></div></div><input type="radio" class="toggle" name="tabs-reverse_preorder_traversal" id="tabs-reverse_preorder_traversal-1"  />
+  <label for="tabs-reverse_preorder_traversal-1">Iterative</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Since parents are visited prior to children, we can push to and pop from stack</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># in a loop as we go. The left child needs to pushed before right child so that</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># right child is popped first.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse_preorder_iterative</span>(node):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>    stack <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    stack<span style="color:#f92672">.</span>append(node)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> stack:
+</span></span><span style="display:flex;"><span>        node <span style="color:#f92672">=</span> stack<span style="color:#f92672">.</span>pop()
+</span></span><span style="display:flex;"><span>        node<span style="color:#f92672">.</span>visit()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> node<span style="color:#f92672">.</span>left:
+</span></span><span style="display:flex;"><span>            stack<span style="color:#f92672">.</span>append(node<span style="color:#f92672">.</span>left)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> node<span style="color:#f92672">.</span>right:
+</span></span><span style="display:flex;"><span>            stack<span style="color:#f92672">.</span>append(node<span style="color:#f92672">.</span>right)
+</span></span></code></pre></div></div></div>
+
+<h3 id="in-order-traversal">
+  In-order traversal
+  <a class="anchor" href="#in-order-traversal">#</a>
+</h3>
+<p>Left child -&gt; Parent -&gt; Right child</p>
+<p>Traversing a binary search tree (BST) in-order will visit the nodes in sorted order (ascending). Other applications include construction of BST, creating balanced BST from sorted array, determining if a tree is balanced, and finding k-smallest elements in a BST.</p>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-inorder_traversal" id="tabs-inorder_traversal-0" checked="checked" />
+  <label for="tabs-inorder_traversal-0">Recursive</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">inorder_recursive</span>(node):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>    inorder_recursive(node<span style="color:#f92672">.</span>left)
+</span></span><span style="display:flex;"><span>    node<span style="color:#f92672">.</span>visit()
+</span></span><span style="display:flex;"><span>    inorder_recursive(node<span style="color:#f92672">.</span>right)
+</span></span></code></pre></div></div><input type="radio" class="toggle" name="tabs-inorder_traversal" id="tabs-inorder_traversal-1"  />
+  <label for="tabs-inorder_traversal-1">Iterative</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Since left child has to be visited first, we need to push left children to the</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># stack until we reach a leaf node. We then start popping the nodes and after </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># visiting the popped nodes, push its right node, if it exist. If the right node </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># contains a subtree (could be even a complete subtree), this subtree will be </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># visited in-order as well.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">inorder_ietrative</span>(node):
+</span></span><span style="display:flex;"><span>   stack <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">while</span> stack <span style="color:#f92672">or</span> node:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> node:
+</span></span><span style="display:flex;"><span>        stack<span style="color:#f92672">.</span>append(node)
+</span></span><span style="display:flex;"><span>        node <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>left
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        node <span style="color:#f92672">=</span> stack<span style="color:#f92672">.</span>pop()
+</span></span><span style="display:flex;"><span>        node<span style="color:#f92672">.</span>visit()
+</span></span><span style="display:flex;"><span>        node <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>right
+</span></span></code></pre></div></div></div>
+
+<h3 id="reverse-in-order-traversal">
+  Reverse in-order traversal
+  <a class="anchor" href="#reverse-in-order-traversal">#</a>
+</h3>
+<p>Right child -&gt; Parent -&gt; Left child</p>
+<p>Traversing a binary search tree (BST) using reverse in-order method will visit the nodes in sorted order (descending). That means, it can be used to get K-largest elements in a BST as well.</p>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-reverse_inorder_traversal" id="tabs-reverse_inorder_traversal-0" checked="checked" />
+  <label for="tabs-reverse_inorder_traversal-0">Recursive</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse_inorder_recusrive</span>(node):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>    reverse_inorder_recusrive(node<span style="color:#f92672">.</span>right)
+</span></span><span style="display:flex;"><span>    node<span style="color:#f92672">.</span>visit()
+</span></span><span style="display:flex;"><span>    reverse_inorder_recusrive(node<span style="color:#f92672">.</span>left)
+</span></span></code></pre></div></div><input type="radio" class="toggle" name="tabs-reverse_inorder_traversal" id="tabs-reverse_inorder_traversal-1"  />
+  <label for="tabs-reverse_inorder_traversal-1">Iterative</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Since right child has to be visited first, we need to push right children to \</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># the stack until we reach a leaf node. We then start popping the nodes and </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># after visiting the popped nodes, push its left node, if it exist. If the </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># left node contains a subtree (could be even a complete subtree), this subtree</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># will be  visited in-order as well.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse_inorder_iterative</span>(node):
+</span></span><span style="display:flex;"><span>    stack <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> stack <span style="color:#f92672">or</span> node:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> node:
+</span></span><span style="display:flex;"><span>            stack<span style="color:#f92672">.</span>append(node)
+</span></span><span style="display:flex;"><span>            node <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>right
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            node <span style="color:#f92672">=</span> stack<span style="color:#f92672">.</span>pop()
+</span></span><span style="display:flex;"><span>            node<span style="color:#f92672">.</span>visit()
+</span></span><span style="display:flex;"><span>            node <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>left
+</span></span></code></pre></div></div></div>
+
+<h3 id="post-order-traversal">
+  Post-order traversal
+  <a class="anchor" href="#post-order-traversal">#</a>
+</h3>
+<p>Left child -&gt; Right child -&gt; Parent</p>
+<p>Can be used to delete tree from leaf to root.</p>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-postorder_traversal" id="tabs-postorder_traversal-0" checked="checked" />
+  <label for="tabs-postorder_traversal-0">Recursive</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">postorder_recursive</span>(node):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>    postorder_recursive(node<span style="color:#f92672">.</span>left)
+</span></span><span style="display:flex;"><span>    postorder_recursive(node<span style="color:#f92672">.</span>right)
+</span></span><span style="display:flex;"><span>    node<span style="color:#f92672">.</span>visit()
+</span></span></code></pre></div></div><input type="radio" class="toggle" name="tabs-postorder_traversal" id="tabs-postorder_traversal-1"  />
+  <label for="tabs-postorder_traversal-1">Iterative</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">postorder_iterative</span>(node):
+</span></span><span style="display:flex;"><span>    stack <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    last_seen <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> stack <span style="color:#f92672">or</span> node:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> node:
+</span></span><span style="display:flex;"><span>            stack<span style="color:#f92672">.</span>append(node)
+</span></span><span style="display:flex;"><span>            node <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>left
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            peek_node <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> peek_node<span style="color:#f92672">.</span>right <span style="color:#f92672">and</span> peek_node<span style="color:#f92672">.</span>right <span style="color:#f92672">!=</span> last_seen:
+</span></span><span style="display:flex;"><span>                node <span style="color:#f92672">=</span> peek_node<span style="color:#f92672">.</span>right
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                peek_node<span style="color:#f92672">.</span>visit()
+</span></span><span style="display:flex;"><span>                last_seen <span style="color:#f92672">=</span> stack<span style="color:#f92672">.</span>pop()
+</span></span></code></pre></div></div></div>
+
+<h3 id="reverse-post-order-traversal">
+  Reverse post-order traversal
+  <a class="anchor" href="#reverse-post-order-traversal">#</a>
+</h3>
+<p>Right child -&gt; Left child -&gt; Parent</p>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-reverse_postorder_traversal" id="tabs-reverse_postorder_traversal-0" checked="checked" />
+  <label for="tabs-reverse_postorder_traversal-0">Recursive</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse_postorder_recursive</span>(node):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>    reverse_postorder_recursive(node<span style="color:#f92672">.</span>right)
+</span></span><span style="display:flex;"><span>    reverse_postorder_recursive(node<span style="color:#f92672">.</span>left)
+</span></span><span style="display:flex;"><span>    node<span style="color:#f92672">.</span>visit()
+</span></span></code></pre></div></div><input type="radio" class="toggle" name="tabs-reverse_postorder_traversal" id="tabs-reverse_postorder_traversal-1"  />
+  <label for="tabs-reverse_postorder_traversal-1">Iterative</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse_postorder_iterative</span>(node):
+</span></span><span style="display:flex;"><span>    stack <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    last_seen_node <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> stack <span style="color:#f92672">or</span> node:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> node:
+</span></span><span style="display:flex;"><span>            stack<span style="color:#f92672">.</span>append(node)
+</span></span><span style="display:flex;"><span>            node <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>right
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            peek_node <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> peek_node<span style="color:#f92672">.</span>left <span style="color:#f92672">and</span> peek_node<span style="color:#f92672">.</span>left <span style="color:#f92672">!=</span> last_seen_node:
+</span></span><span style="display:flex;"><span>                node <span style="color:#f92672">=</span> peek_node<span style="color:#f92672">.</span>left
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                peek_node<span style="color:#f92672">.</span>visit()
+</span></span><span style="display:flex;"><span>                last_seen_node <span style="color:#f92672">=</span> stack<span style="color:#f92672">.</span>pop()
+</span></span></code></pre></div></div></div>
+
+<h3 id="test-code">
+  Test Code
+  <a class="anchor" href="#test-code">#</a>
+</h3>
+
+
+<script src="/mermaid.min.js"></script>
+
+  <script>mermaid.initialize({
+  "flowchart": {
+    "useMaxWidth":true
+  },
+  "theme": "default"
+}
+)</script>
+
+
+
+
+<p class="mermaid">
+graph TB;
+    A((1))-->B((2))
+    A-->C((3));
+    B-->E((4))
+    B-->F((5))
+    C-->H((6))
+    C-->I((7))
+    E-->M((null))
+    E-->J((8))
+    J-->K((9))
+    J-->L((10))
+</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    root <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    n2 <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    n3 <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>    root<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> n2
+</span></span><span style="display:flex;"><span>    root<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> n3
+</span></span><span style="display:flex;"><span>    n4 <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>    n5 <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    n2<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> n4
+</span></span><span style="display:flex;"><span>    n2<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> n5
+</span></span><span style="display:flex;"><span>    n6 <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">6</span>)
+</span></span><span style="display:flex;"><span>    n7 <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span>    n3<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> n6
+</span></span><span style="display:flex;"><span>    n3<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> n7
+</span></span><span style="display:flex;"><span>    n8 <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>    n4<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> n8
+</span></span><span style="display:flex;"><span>    n9 <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">9</span>)
+</span></span><span style="display:flex;"><span>    n10 <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>    n8<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> n9
+</span></span><span style="display:flex;"><span>    n8<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> n10
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;In-order Recursive&#34;</span>)
+</span></span><span style="display:flex;"><span>    inorder_recursive(root)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;In-order Iterarive&#34;</span>)
+</span></span><span style="display:flex;"><span>    inorder_ietrative(root)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Reverse In-order Recursive&#34;</span>)
+</span></span><span style="display:flex;"><span>    reverse_inorder_recusrive(root)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Reverse In-order Iterative&#34;</span>)
+</span></span><span style="display:flex;"><span>    reverse_inorder_iterative(root)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;-------------------------&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Pre-order recursive&#34;</span>)
+</span></span><span style="display:flex;"><span>    preorder_recursive(root)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Pre-order Iterative&#34;</span>)
+</span></span><span style="display:flex;"><span>    preorder_iterative(root)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Reverse Pre-order recursive&#34;</span>)
+</span></span><span style="display:flex;"><span>    reverse_preorder_recursive(root)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Reverse Pre-order Iterative&#34;</span>)
+</span></span><span style="display:flex;"><span>    reverse_preorder_iterative(root)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;-------------------------&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Post-order recursive&#34;</span>)
+</span></span><span style="display:flex;"><span>    postorder_recursive(root)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Post-order Iterative&#34;</span>)
+</span></span><span style="display:flex;"><span>    postorder_iterative(root)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Reverse Post-order recursive&#34;</span>)
+</span></span><span style="display:flex;"><span>    reverse_postorder_recursive(root)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Reverse Post-order Iterative&#34;</span>)
+</span></span><span style="display:flex;"><span>    reverse_postorder_iterative(root)
+</span></span></code></pre></div><h3 id="resources">
+  Resources
+  <a class="anchor" href="#resources">#</a>
+</h3>
+<p>A good resource to understand different tree traversal algorithms is <a href="https://en.wikipedia.org/wiki/Tree_traversal" target="_blank" >Wikipedia</a>. Also check <a href="https://www.enjoyalgorithms.com/blog/iterative-binary-tree-traversals-using-stack" target="_blank" >EnjoyAlgorithms</a>, <a href="https://stackoverflow.com/questions/9456937/when-to-use-preorder-postorder-and-inorder-binary-search-tree-traversal-strate" target="_blank" >StackOverflow</a> and <a href="https://testbook.com/computer-awareness/inorder-traversal-notes" target="_blank" >Testbook</a>.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#bfs-traversal">BFS traversal</a>
+      <ul>
+        <li><a href="#level-order-traversal">Level-order traversal</a></li>
+      </ul>
+    </li>
+    <li><a href="#dfs-traversal">DFS traversal</a>
+      <ul>
+        <li><a href="#pre-order-traversal">Pre-order traversal</a></li>
+        <li><a href="#reverse-pre-order-traversal">Reverse pre-order traversal</a></li>
+        <li><a href="#in-order-traversal">In-order traversal</a></li>
+        <li><a href="#reverse-in-order-traversal">Reverse in-order traversal</a></li>
+        <li><a href="#post-order-traversal">Post-order traversal</a></li>
+        <li><a href="#reverse-post-order-traversal">Reverse post-order traversal</a></li>
+        <li><a href="#test-code">Test Code</a></li>
+        <li><a href="#resources">Resources</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

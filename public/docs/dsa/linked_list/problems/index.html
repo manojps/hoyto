@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Coding Problems
+  #
+
+
+  Detect cycles in a linked list
+  #
+
+
+  Remove duplicates in a sorted linked list
+  #
+
+
+  Keep the first node
+  #
+
+
+  Keep the last node
+  #
+
+
+  Remove all duplicates
+  #
+
+
+  Remove duplicates in an unsorted linked list
+  #
+
+
+  Keep the first node
+  #
+
+
+  Keep the last node
+  #
+
+
+  Remove all duplicates
+  #
+
+
+  Remove k-th last node
+  #
+
+
+  Remove k-th node from i-th node
+  #
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/dsa/linked_list/problems/">
+  <meta property="og:site_name" content="Notes on Computer Systems and Machine Learning">
+  <meta property="og:title" content="Notes on Computer Systems and Machine Learning">
+  <meta property="og:description" content=" Coding Problems # Detect cycles in a linked list # Remove duplicates in a sorted linked list # Keep the first node # Keep the last node # Remove all duplicates # Remove duplicates in an unsorted linked list # Keep the first node # Keep the last node # Remove all duplicates # Remove k-th last node # Remove k-th node from i-th node # ">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+<title>Problems | Notes on Computer Systems and Machine Learning</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.b67cae1a43d6e1fb8db85deb339bc71264f1e6f14aaf15a557167e37246e7346.css" integrity="sha256-tnyuGkPW4fuNuF3rM5vHEmTx5vFKrxWlVxZ&#43;NyRuc0Y=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.ce685b65cf08276fe25a6463b275ff78a68a0178b64e33e7039444bd1ce4a55a.js" integrity="sha256-zmhbZc8IJ2/iWmRjsnX/eKaKAXi2TjPnA5REvRzkpVo=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/docs/dsa/linked_list/problems/index.xml" title="Notes on Computer Systems and Machine Learning" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Notes on Computer Systems and Machine Learning</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-27ea0c642ea54e6cd5149afc21584915" class="toggle" checked />
+    <label for="section-27ea0c642ea54e6cd5149afc21584915" class="flex justify-between">
+      <a role="button" class="">Data Structures &amp; Algorithms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6f4081a7cb9131b0d47c5f136f2c5105" class="toggle" checked />
+    <label for="section-6f4081a7cb9131b0d47c5f136f2c5105" class="flex justify-between">
+      <a href="/docs/dsa/linked_list/" class="">Linked List</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/linked_list/update/" class="">Update</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1b992a7cb8e6593a23519c02e7c4aecf" class="toggle" checked />
+    <label for="section-1b992a7cb8e6593a23519c02e7c4aecf" class="flex justify-between">
+      <a href="/docs/dsa/linked_list/problems/" class="active">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-394b432cc006919ea6f4656f014608bc" class="toggle"  />
+    <label for="section-394b432cc006919ea6f4656f014608bc" class="flex justify-between">
+      <a href="/docs/dsa/hash_table/" class="">Hash Table</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c0398d0147306bfe4962d344a8d68986" class="toggle"  />
+    <label for="section-c0398d0147306bfe4962d344a8d68986" class="flex justify-between">
+      <a href="/docs/dsa/binary_tree/" class="">Binary Tree</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/binary_tree/insert/" class="">Insert</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/binary_tree/traverse/" class="">Traverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/binary_tree/delete/" class="">Delete</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e10672471bd65474e94ae6cb87a61274" class="toggle"  />
+    <label for="section-e10672471bd65474e94ae6cb87a61274" class="flex justify-between">
+      <a href="/docs/dsa/binary_tree/problems/" class="">Problems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-af5bb7130334c204fb9a90ff4deae9ce" class="toggle"  />
+    <label for="section-af5bb7130334c204fb9a90ff4deae9ce" class="flex justify-between">
+      <a href="/docs/dsa/heap/" class="">Heap</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/dsa/stack/" class="">Stack</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="toggle"  />
+    <label for="section-a5d0f75b7582b238a1461ce0a0ee25e6" class="flex justify-between">
+      <a role="button" class="">Machine Learning</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be9e9a6863a691ff246cc0ef6ba064c0" class="toggle"  />
+    <label for="section-be9e9a6863a691ff246cc0ef6ba064c0" class="flex justify-between">
+      <a role="button" class="">Datasets</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e48506722f290c30e510d4bb88018ead" class="toggle"  />
+    <label for="section-e48506722f290c30e510d4bb88018ead" class="flex justify-between">
+      <a href="/docs/ml/datasets/tiny_imagenet/" class="">Tiny ImageNet</a>
+    </label>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-21ae5bd001035865dd674b39a245d790" class="toggle"  />
+    <label for="section-21ae5bd001035865dd674b39a245d790" class="flex justify-between">
+      <a href="/docs/ml/checkpointing/" class="">Checkpointing</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ml/checkpointing/checkfreq/" class="">CheckFreq</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b9dd7809efc0de1493446eb73e9f9047" class="toggle"  />
+    <label for="section-b9dd7809efc0de1493446eb73e9f9047" class="flex justify-between">
+      <a role="button" class="">Computer Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4817d0e206325b770adf43460e7fc477" class="toggle"  />
+    <label for="section-4817d0e206325b770adf43460e7fc477" class="flex justify-between">
+      <a href="/docs/systems/cross_cutting_issues/" class="">Cross Cutting Issues</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/alignment/" class="">Data Access Alignment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/cross_cutting_issues/device_driver/" class="">Device Driver</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-be86044918f6ff386621aa88c154d6df" class="toggle"  />
+    <label for="section-be86044918f6ff386621aa88c154d6df" class="flex justify-between">
+      <a role="button" class="">Operating Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/booting/" class="">Booting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/cpu/" class="">CPU</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/os/io_path/" class="">I/O Path</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="toggle"  />
+    <label for="section-ec20cc49380f61f916f62ffc1aa2cdb1" class="flex justify-between">
+      <a role="button" class="">Storage Systems</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/cxl/" class="">Compute Express Link (CXL)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/dax/" class="">Direct Access (DAX)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems/storage/ssd_data_structures/" class="">SSD Data Structures</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-49e56af90e297b291fcbf9ec542e1e05" class="toggle"  />
+    <label for="section-49e56af90e297b291fcbf9ec542e1e05" class="flex justify-between">
+      <a role="button" class="">SQL</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Problems</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#detect-cycles-in-a-linked-list">Detect cycles in a linked list</a></li>
+    <li><a href="#remove-duplicates-in-a-sorted-linked-list">Remove duplicates in a sorted linked list</a>
+      <ul>
+        <li><a href="#keep-the-first-node">Keep the first node</a></li>
+        <li><a href="#keep-the-last-node">Keep the last node</a></li>
+        <li><a href="#remove-all-duplicates">Remove all duplicates</a></li>
+      </ul>
+    </li>
+    <li><a href="#remove-duplicates-in-an-unsorted-linked-list">Remove duplicates in an unsorted linked list</a>
+      <ul>
+        <li><a href="#keep-the-first-node-1">Keep the first node</a></li>
+        <li><a href="#keep-the-last-node-1">Keep the last node</a></li>
+        <li><a href="#remove-all-duplicates-1">Remove all duplicates</a></li>
+      </ul>
+    </li>
+    <li><a href="#remove-k-th-last-node">Remove k-th last node</a></li>
+    <li><a href="#remove-k-th-node-from-i-th-node">Remove k-th node from i-th node</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="coding-problems">
+  Coding Problems
+  <a class="anchor" href="#coding-problems">#</a>
+</h1>
+<h2 id="detect-cycles-in-a-linked-list">
+  Detect cycles in a linked list
+  <a class="anchor" href="#detect-cycles-in-a-linked-list">#</a>
+</h2>
+<h2 id="remove-duplicates-in-a-sorted-linked-list">
+  Remove duplicates in a sorted linked list
+  <a class="anchor" href="#remove-duplicates-in-a-sorted-linked-list">#</a>
+</h2>
+<h3 id="keep-the-first-node">
+  Keep the first node
+  <a class="anchor" href="#keep-the-first-node">#</a>
+</h3>
+<h3 id="keep-the-last-node">
+  Keep the last node
+  <a class="anchor" href="#keep-the-last-node">#</a>
+</h3>
+<h3 id="remove-all-duplicates">
+  Remove all duplicates
+  <a class="anchor" href="#remove-all-duplicates">#</a>
+</h3>
+<h2 id="remove-duplicates-in-an-unsorted-linked-list">
+  Remove duplicates in an unsorted linked list
+  <a class="anchor" href="#remove-duplicates-in-an-unsorted-linked-list">#</a>
+</h2>
+<h3 id="keep-the-first-node-1">
+  Keep the first node
+  <a class="anchor" href="#keep-the-first-node-1">#</a>
+</h3>
+<h3 id="keep-the-last-node-1">
+  Keep the last node
+  <a class="anchor" href="#keep-the-last-node-1">#</a>
+</h3>
+<h3 id="remove-all-duplicates-1">
+  Remove all duplicates
+  <a class="anchor" href="#remove-all-duplicates-1">#</a>
+</h3>
+<h2 id="remove-k-th-last-node">
+  Remove k-th last node
+  <a class="anchor" href="#remove-k-th-last-node">#</a>
+</h2>
+<h2 id="remove-k-th-node-from-i-th-node">
+  Remove k-th node from i-th node
+  <a class="anchor" href="#remove-k-th-node-from-i-th-node">#</a>
+</h2>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#detect-cycles-in-a-linked-list">Detect cycles in a linked list</a></li>
+    <li><a href="#remove-duplicates-in-a-sorted-linked-list">Remove duplicates in a sorted linked list</a>
+      <ul>
+        <li><a href="#keep-the-first-node">Keep the first node</a></li>
+        <li><a href="#keep-the-last-node">Keep the last node</a></li>
+        <li><a href="#remove-all-duplicates">Remove all duplicates</a></li>
+      </ul>
+    </li>
+    <li><a href="#remove-duplicates-in-an-unsorted-linked-list">Remove duplicates in an unsorted linked list</a>
+      <ul>
+        <li><a href="#keep-the-first-node-1">Keep the first node</a></li>
+        <li><a href="#keep-the-last-node-1">Keep the last node</a></li>
+        <li><a href="#remove-all-duplicates-1">Remove all duplicates</a></li>
+      </ul>
+    </li>
+    <li><a href="#remove-k-th-last-node">Remove k-th last node</a></li>
+    <li><a href="#remove-k-th-node-from-i-th-node">Remove k-th node from i-th node</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
